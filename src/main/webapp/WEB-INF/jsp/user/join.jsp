@@ -21,14 +21,15 @@
 <!-- 	        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
 <!-- 	      </div> -->
 <!-- 	      <span>or use your email for registration</span> -->
-	      <input type="text" placeholder="성명" />
+	      <input type="text" placeholder="성명" id="nameInput">
 	      <div class = "d-flex">
-		      <input type="text" placeholder="아이디" id="idInput"/>
-		      <button type="button" class="ml-2" >중복확인</button>
+		      <input type="text" placeholder="아이디" id="idInput">
+		      <button type="button" class="ml-2" id="duplicateBtn">중복확인</button>
 	      </div>
-	      <input type="text" placeholder="이메일주소" />
-	      <input type="password" placeholder="비밀번호" />
-		<input type="password" placeholder="비밀번호확인" />
+	      <div class="small text-danger d-none mt-1" id="duplicateId">사용중인 아이디입니다.</div>
+	      <input type="text" placeholder="이메일주소" id="emailInput">
+	      <input type="password" placeholder="비밀번호" id="passwordInput">
+		<input type="password" placeholder="비밀번호확인" id="passwordConfirmInput">
 		</div>
 	      <button class="mt-3" id="joinBtn">가입하기</button>
 	    </form>
@@ -56,9 +57,114 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
+		// 중복 체크 확인
+		var isDuplicateCheck = false;
+		
+		// 아이디 중복 여부 저장 변수
+		var isDuplicateId = true;
+		
+		$("#idInput").on("input", function(){
+			isDuplicateCheck = false;
+			isDuplicateId = true;
+			$("#duplicateId").addClass("d-none");
+		});
+		
+		
+		// 중복 버튼
+		$("#duplicateBtn").on("click", function() {
+			let id = $("#idInput").val();
+			
+			if(id == ""){
+				alert("id를 입력하세요");
+				return;
+			} 
+		
+			$.ajax({
+				type:"get"
+				, url:"/user/duplicate-id"
+				, data:{"loginId":id}
+				, success:function(data) {
+					// 중복 체크 완료
+					isDuplicateCheck = true;
+ 					
+					if(data.isDuplicate) {
+					isDuplicateId = true;
+					$("#duplicateId").removeClass("d-none");
+					} else{
+						isDuplicateId = false;
+						$("#duplicateId").addClass("d-none");
+					}
+				}
+				,error:function(){
+					alert("중복확인 에러");
+				}
+			});
+		});
+		
+		// 영문 조합 비밀번호 설정
+		let regPass = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,20}$/;
+		
 		// 가입 버튼
 		$("#joinBtn").on("click", function() {
-			let id = $()
+			let name = $("#nameInput").val();
+			let id = $("#idInput").val();
+			let email = $("#emailInput").val();
+			let password = $("#passwordInput").val();
+			let passwordConfirm = $("#passwordConfirmInput").val();
+			
+			// 유효성 검사
+			if(name == "") {
+				alert("이름을 입력하세요");
+				return 0;
+			}
+			
+			if(id == ""){
+				alert("아이디를 입력하세요.");
+				return ;
+			}
+			
+			if(email == "") {
+				alert("이메일을 입력하세요");
+				return ;
+			}
+			
+			if(password == "") {
+				alert("비밀번호를 입력하세요");
+				return ;
+			}
+			
+			if(password != passwordConfirm) {
+				alert("비밀번호가 일치하지 않습니다");
+				return ;
+			}
+			
+			if (password.length < 6 || password.length > 20) {
+				  alert("비밀번호는 6자리 이상 20자리 이하로 입력해야 합니다.");
+				  return;
+			}
+			
+			// 영문, 숫자 조합으로 비밀번호 설정
+			if(!regPass.test(password)){
+				alert("영문,숫자 조합으로 입력해주세요.");
+				return ;
+			}
+			
+			$.ajax({
+				type : "post"
+				, url :"/user/join"
+				, data:{"name":name, "loginId":id,"email":email, "password":password}
+				, success:function(data) {
+					if(data.result == "success") {
+						location.href = "/user/login-view";
+					} else {
+						alert("가입 실패");
+					}
+					}
+				, error:function() {
+					alert("가입 에러!!");
+				}
+			});
+			
 		});
 		
 	});
