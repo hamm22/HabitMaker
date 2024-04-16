@@ -18,8 +18,11 @@
     </script>
   </head>
   <body>
+  
+  
 
-	<div id="wrap d-flex">
+	<div id="wrap">
+	<section class="d-flex">
 		<c:import url="/WEB-INF/jsp/include/nav.jsp" />
 		
 		<div class="main-box">
@@ -28,6 +31,7 @@
 		
 		<div class="right-box" align="center">
 		</div>
+		</section>
 	</div>
 
 

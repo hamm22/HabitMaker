@@ -1,13 +1,12 @@
 @charset "UTF-8";
 
 #wrap{
-	width:1200px;
 	margin:0 auto;
 }
 
 
  #calendar {
-        max-width: 500px;
+		
         margin: 40px auto;
       }
 
@@ -18,7 +17,7 @@
 
 
 .right-box{
-	width:30%;
+	width: 30%;
 	border: 2px solid #DBDBDB;
 	background-color:navy;
 }
