@@ -4,20 +4,11 @@
 	margin:0 auto;
 }
 
-
- #calendar {
-		
-        margin: 40px auto;
+#calendar {
+        margin: 40px;
       }
 
       
 .main-box{
 	width:90%;
-}
-
-
-.right-box{
-	width: 30%;
-	border: 2px solid #DBDBDB;
-	background-color:navy;
 }

@@ -1,21 +1,21 @@
-package com.ham.habit.post;
+package com.ham.habit.todo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/post")
+@RequestMapping("/todo")
 @Controller
-public class PostController {
+public class TodoController {
 
 	@GetMapping("/main-view")
 	public String inputMain() {
-		return "post/main";
+		return "todo/main";
 	}
 	
 	@GetMapping("/calendar-view")
 	public String Calendar() {
-		return "post/calendar";
+		return "todo/calendar";
 	}
 	
 }

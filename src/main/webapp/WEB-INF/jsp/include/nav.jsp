@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -16,8 +15,8 @@
 				<div class="nav-container">
 					<ul class="menu">
 						<h1>HabitMaker</h1>
-						<li><a href="#"><i class="bi bi-house-fill"></i> 홈</a></li>
-						<li><a href="#"><i class="bi bi-calendar"></i> 캘린더</a></li>
+						<li><a href="/todo/main-view"><i class="bi bi-house-fill"></i> 홈</a></li>
+						<li><a href="/todo/calendar-view"><i class="bi bi-calendar"></i> 캘린더</a></li>
 						<li><a href="#"><i class="bi bi-people-fill"></i> 그룹</a></li>
 						<li><a href="#"><i class="bi bi-person-plus-fill"></i> 그룹찾기</a></li>
 						<li><a href="#"><i class="bi bi-person-fill-gear"></i> 설정</a></li>

@@ -75,7 +75,7 @@
 				},
 				success : function(data) {
 					if (data.result == "success") {
-						location.href = "/post/main-view";
+						location.href = "/todo/main-view";
 					} else {
 						alert("아이디와 비밀번호를 확인해 주세요");
 					}
