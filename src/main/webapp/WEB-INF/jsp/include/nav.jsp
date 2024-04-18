@@ -20,7 +20,7 @@
 						<li><a href="#"><i class="bi bi-people-fill"></i> 그룹</a></li>
 						<li><a href="#"><i class="bi bi-person-plus-fill"></i> 그룹찾기</a></li>
 						<li><a href="#"><i class="bi bi-person-fill-gear"></i> 설정</a></li>
-						<div class="profile mt-5">사용자 아이디님</div>
+						<div class="profile mt-5">${userLoginId }님</div>
 						<button type="button" class="btn btn-secondary mt-3" id="logoutBtn">로그아웃</button>
 					</ul>
 				</div>

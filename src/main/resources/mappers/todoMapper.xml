@@ -7,7 +7,7 @@
 
 	<insert id="insertTodo" parameterType="map">
 		INSERT INTO
-			`todo`
+			`to_do`
 		(
 			`userId`
 			, `title`
@@ -24,5 +24,19 @@
 			, #{goal}
 		)
 	</insert>
+	
+<!-- 	<select id = "selectTodo" resultType="com.ham.habit.todo.domain.Todo"> -->
+<!-- 		SELECT -->
+<!-- 			`id` -->
+<!-- 			, `userId` -->
+<!-- 			, `title` -->
+<!-- 			, `completed` -->
+<!-- 			, `description` -->
+<!-- 			, `goal` -->
+<!-- 			, `createdAt` -->
+<!-- 			, `updatedAt` -->
+<!-- 		FROM -->
+<!-- 			`to_do` -->
+<!-- 	</select> -->
 
 </mapper>

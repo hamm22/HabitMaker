@@ -1,5 +1,41 @@
 package com.ham.habit.todo.domain;
 
 public class Todo {
-
+	private int id;
+	private int userId;
+	private Boolean completed;
+	private String description;
+	private int goal;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public Boolean getCompleted() {
+		return completed;
+	}
+	public void setCompleted(Boolean completed) {
+		this.completed = completed;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public int getGoal() {
+		return goal;
+	}
+	public void setGoal(int goal) {
+		this.goal = goal;
+	}
+	
 }
