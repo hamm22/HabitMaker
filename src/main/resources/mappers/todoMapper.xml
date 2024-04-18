@@ -11,32 +11,26 @@
 		(
 			`userId`
 			, `title`
-			, `completed`
-			, `description`
-			, `goal`
 		)
 		VALUE 
 		(
 			#{userId}
 			, #{title}
-			, #{completed}
-			, #{description}
-			, #{goal}
 		)
 	</insert>
 	
-<!-- 	<select id = "selectTodo" resultType="com.ham.habit.todo.domain.Todo"> -->
-<!-- 		SELECT -->
-<!-- 			`id` -->
-<!-- 			, `userId` -->
-<!-- 			, `title` -->
-<!-- 			, `completed` -->
-<!-- 			, `description` -->
-<!-- 			, `goal` -->
-<!-- 			, `createdAt` -->
-<!-- 			, `updatedAt` -->
-<!-- 		FROM -->
-<!-- 			`to_do` -->
-<!-- 	</select> -->
+	<select id="selectTodoList" resultType="com.ham.habit.todo.domain.Todo">
+		SELECT
+			`id`
+			, `userId`
+			, `title`
+			, `completed`
+			, `description`
+			, `due_date`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`to_do`
+	</select>
 
 </mapper>

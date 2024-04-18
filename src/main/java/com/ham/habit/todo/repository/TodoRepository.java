@@ -11,10 +11,7 @@ import com.ham.habit.todo.domain.Todo;
 public interface TodoRepository {
 	
 	public int insertTodo(@Param("userId")int userId
-							, @Param("title") String title
-							, @Param("completed") Boolean completed
-							, @Param("description") String description
-							, @Param("goal") int goal);
+							, @Param("title") String title);
 	
-//	List<Todo> selectTodo();
+	List<Todo> selectTodoList();
 }

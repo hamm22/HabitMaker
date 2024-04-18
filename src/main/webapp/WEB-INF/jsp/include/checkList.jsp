@@ -15,27 +15,35 @@
 			<div class="right-box">
 
 				<div class="date d-flex justify-content-center">
-<%-- 				<c:forEach var="todo" items="${todo}" ></c:forEach> --%>
 					<i class="bi bi-chevron-left"></i>
 					<div>오늘날짜</div>
 					<i class="bi bi-chevron-right"></i>
 				</div>
 				
-<!-- 				<form action="submit" method="post"> -->
-				<form id="todoForm">
+			<div class="todoList mt-3">
+			<c:forEach var="todo" items="${todoList}">
+				<div class="d-flex ml-2 mt-1">
+					<input type="checkbox" data-todo-id="${todo.id}">
+					<div class="ml-2">${todo.title }</div>
+					<i class="bi bi-three-dots ml-2"></i>
+				</div>
+			</c:forEach>
+			</div>	
+
+		<form id="todoForm">
 					<ul class="todo">
-					<div class="todo-box d-flex">
-						<div class="new-todo-item">
-							
-							<input type="checkbox"> <input type="text" placeholder="습관 입력" id="todoInput">
-							
-						</div>
 					
+					<div class="todo-box d-flex ml-2">
+						<div class="new-todo-item">
+							<input type="checkbox"> <input type="text" placeholder="습관 입력" id="titleInput">
+						</div>
 						<i class="bi bi-three-dots ml-2"></i>
 					</div>
 					</ul>
 				</form>
-
+				
+				
+			
 				<div class="content-box">
 					<textarea class="form-control mt-3" rows="7" id="descriptionInput"></textarea>
 				</div>
@@ -49,30 +57,31 @@
 <script type="text/javascript">
 
 // 	할일 생성
-	const plusIcon = document.querySelector('.bi.bi-plus-circle-fill');
-	const todoList = document.querySelector('.todo');
+// 	const plusIcon = document.querySelector('.bi.bi-plus-circle-fill');
+// 	const todoList = document.querySelector('.todo');
 
-	plusIcon.addEventListener('click', () => {
-	  const newTodoItem = document.createElement('div');
-	  newTodoItem.classList.add('todo-box');
-	  newTodoItem.innerHTML = `
-	    <input type="checkbox">
-	    <input type="text" placeholder="습관 입력">
-	    <i class="bi bi-three-dots ml-2"></i>
-	  `;
-	  todoList.appendChild(newTodoItem);
+// 	plusIcon.addEventListener('click', () => {
+// 	  const newTodoItem = document.createElement('div');
+// 	  newTodoItem.classList.add('todo-box');
+// 	  newTodoItem.innerHTML = `
+// 	    <input type="checkbox">
+// 	    <input type="text" placeholder="습관 입력">
+// 	    <i class="bi bi-three-dots ml-2"></i>
+// 	  `;
+// 	  todoList.appendChild(newTodoItem);
 
-	  const newTodoInput = newTodoItem.querySelector('input[type="text"]');
-	  newTodoInput.focus(); // 입력 칸에 포커스 설정
-	});
-	
+// 	  const newTodoInput = newTodoItem.querySelector('input[type="text"]');
+// 	  newTodoInput.focus(); // 입력 칸에 포커스 설정
+// 	});
 	
 
 	$(document).ready(function() {
 		
-		$(".todoForm").on("click", function(){
-			let title = $("#todoInput").val();
-			let description = $("descriptionInput").val();
+		$("#todoForm").on("submit", function(e){
+			
+			e.preventDefault();
+			
+			let title = $("#titleInput").val();
 			
 			if(title == "") {
 				alert("할일을 입력하세요");
@@ -82,7 +91,7 @@
 			$.ajax({
 				type : "post"
 				, url: "/todo/create"
-				, data: {"title" : title, "description" : description}
+				, data: {"title" : title}
 			, success:function(data) {
 				if (data.result == "success") {
 					alert("할일 성공");
@@ -95,6 +104,7 @@
 			});
 		});
 	});
+	
 </script>
 
 </body>

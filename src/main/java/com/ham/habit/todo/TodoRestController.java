@@ -1,5 +1,6 @@
 package com.ham.habit.todo;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import com.ham.habit.todo.service.TodoService;
 
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("todo")
+@RequestMapping("/todo")
 @RestController
 public class TodoRestController {
 	
@@ -22,14 +23,11 @@ public class TodoRestController {
 	
 	@PostMapping("/create")
 	public Map<String, String> inputTodo( @RequestParam("title") String title
-										, @RequestParam("completed") Boolean completed
-										, @RequestParam("description") String description
-										, @RequestParam("goal") int goal
 										, HttpSession session) {
 		
 		int userId = (Integer)session.getAttribute("userId");
 		
-		int count = todoService.addTodo(userId, title, completed, description, goal);
+		int count = todoService.addTodo(userId, title);
 		
 		Map<String, String> resultMap = new HashMap<>();
 		

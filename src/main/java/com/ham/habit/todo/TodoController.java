@@ -1,20 +1,40 @@
 package com.ham.habit.todo;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ham.habit.todo.domain.Todo;
+import com.ham.habit.todo.service.TodoService;
+
+import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/todo")
 @Controller
 public class TodoController {
 
+	@Autowired
+	private TodoService todoService;
+	
 	@GetMapping("/main-view")
 	public String inputMain() {
 		return "todo/main";
 	}
 	
 	@GetMapping("/calendar-view")
-	public String Calendar() {
+	public String Calendar(Model model
+			, HttpSession session) {
+		
+		int userId = (Integer)session.getAttribute("userId");
+		
+		List<Todo> todoList = todoService.getTodo(userId);
+		
+		model.addAttribute("todoList", todoList);
+				
 		return "todo/calendar";
 	}
 	

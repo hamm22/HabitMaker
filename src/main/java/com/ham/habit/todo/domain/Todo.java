@@ -1,12 +1,14 @@
 package com.ham.habit.todo.domain;
 
+import java.util.Date;
+
 public class Todo {
 	private int id;
 	private int userId;
+	private String title;
 	private Boolean completed;
 	private String description;
-	private int goal;
-	
+	private Date due_date;
 	public int getId() {
 		return id;
 	}
@@ -18,6 +20,12 @@ public class Todo {
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public Boolean getCompleted() {
 		return completed;
@@ -31,11 +39,11 @@ public class Todo {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getGoal() {
-		return goal;
+	public Date getDue_date() {
+		return due_date;
 	}
-	public void setGoal(int goal) {
-		this.goal = goal;
+	public void setDue_date(Date due_date) {
+		this.due_date = due_date;
 	}
 	
 }

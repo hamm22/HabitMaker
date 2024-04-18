@@ -14,13 +14,14 @@ public class TodoService {
 	@Autowired
 	private TodoRepository todoRepository;
 	
-	public int addTodo(int userId, String title, Boolean completed, String description, int goal) {
-		return todoRepository.insertTodo(userId, title, completed, description, goal);
+	public int addTodo(int userId, String title) {
+		return todoRepository.insertTodo(userId, title);
 	}
 	
-//	public List<Todo> getTodo(){
-//		List<Todo> todo = todoRepository.selectTodo();
-//		return todo;
-//	}
+	public List<Todo> getTodo(int loginUserId){
+		List<Todo> todoList = todoRepository.selectTodoList();
+		return todoList;
+		
+	}
 	
 }
