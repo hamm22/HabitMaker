@@ -21,7 +21,10 @@ public class TodoService {
 	public List<Todo> getTodo(int loginUserId){
 		List<Todo> todoList = todoRepository.selectTodoList();
 		return todoList;
-		
+	}
+	
+	public int addCompleted(int userId, Boolean completed){
+		return todoRepository.insertCompleted(userId, completed);
 	}
 	
 }

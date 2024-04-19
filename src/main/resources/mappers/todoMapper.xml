@@ -32,5 +32,19 @@
 		FROM
 			`to_do`
 	</select>
+	
+	<insert id="insertCompleted" parameterType="map">
+		INSERT INTO
+				`to_do`
+			(
+				`userId`
+				, `completed`
+			)
+			VALUE 
+			(
+				#{userId}
+				, #{completed}
+			)
+	</insert>
 
 </mapper>

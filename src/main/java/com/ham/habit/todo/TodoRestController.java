@@ -40,5 +40,24 @@ public class TodoRestController {
 		
 	}
 	
+	@PostMapping("/status")
+	public Map<String, String> inputCompleted(@RequestParam("completed") Boolean completed
+											, HttpSession session){
+		
+		int userId = (Integer)session.getAttribute("userId");
+
+		int count = todoService.addCompleted(userId, completed);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(count == 1) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		return resultMap;
+		
+	}
+	
 
 }

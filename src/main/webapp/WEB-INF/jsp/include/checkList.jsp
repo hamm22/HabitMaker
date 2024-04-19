@@ -19,16 +19,27 @@
 					<div>오늘날짜</div>
 					<i class="bi bi-chevron-right"></i>
 				</div>
-				
-			<div class="todoList mt-3">
+
+		<div class="todoList mt-3">
 			<c:forEach var="todo" items="${todoList}">
 				<div class="d-flex ml-2 mt-1">
-					<input type="checkbox" data-todo-id="${todo.id}">
+					<%-- 					<input type="checkbox" data-todo-id="${todo.id}" id="checkbox"> --%>
+
+<%-- 					<c:choose> --%>
+<%-- 						<c:when test="${todo.completed }"> --%>
+<%-- 							<i class="bi bi-square check-icon" data-post-id="${todo.id }"></i> --%>
+<%-- 						</c:when> --%>
+<%-- 						<c:otherwise> --%>
+<%-- 							<i class="bi bi-check-square-fill check-icon" data-post-id="${todo.id }"></i> --%>
+<%-- 						</c:otherwise> --%>
+<%-- 					</c:choose> --%>
+			 		
+			 		<i class="bi bi-square check-icon" id="completedInput"></i>
 					<div class="ml-2">${todo.title }</div>
 					<i class="bi bi-three-dots ml-2"></i>
 				</div>
 			</c:forEach>
-			</div>	
+		</div>
 
 		<form id="todoForm">
 					<ul class="todo">
@@ -42,8 +53,6 @@
 					</ul>
 				</form>
 				
-				
-			
 				<div class="content-box">
 					<textarea class="form-control mt-3" rows="7" id="descriptionInput"></textarea>
 				</div>
@@ -80,7 +89,7 @@
 		$("#todoForm").on("submit", function(e){
 			
 			e.preventDefault();
-			
+		
 			let title = $("#titleInput").val();
 			
 			if(title == "") {
@@ -94,7 +103,7 @@
 				, data: {"title" : title}
 			, success:function(data) {
 				if (data.result == "success") {
-					alert("할일 성공");
+					location.reload();
 				} else {
 				alert("할일 작성 실패");
 				}
@@ -103,7 +112,41 @@
 			}
 			});
 		});
+		
+		$(".check-icon").on("click", function(){
+		
+			let completed = $("#completedInput").val();
+			
+			$.ajax({
+				type:"post"
+				, url: "/todo/status"
+			    , data: {"completed" : completed} 
+				, success:function(data) {
+					if (data.result == "success") {
+						location.reload();
+					} else {
+					alert("체크 작성 실패");
+					}
+				}
+				, error:function() {
+					alert("체크 작성 에러");
+				}
+		});
 	});
+	});
+	
+	
+	 var i = 0;
+     $('i').on('click',function(){
+         if(i==0){
+             $(this).attr('class','bi bi-check-square-fill check-icon');
+             i++;
+         }else if(i==1){
+             $(this).attr('class','bi bi-square check-icon');
+             i--;
+         }
+
+     });
 	
 </script>
 
