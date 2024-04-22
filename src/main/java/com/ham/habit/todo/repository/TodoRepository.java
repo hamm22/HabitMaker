@@ -15,6 +15,9 @@ public interface TodoRepository {
 	
 	public List<Todo> selectTodoList();
 	
-	public int insertCompleted(@Param("userId")int userId
+	public int updateCompleted(@Param("id")int id
 								, @Param("completed") Boolean completed);
+	
+	public int insertDescription(@Param("userId")int userId
+			, @Param("description") String description);
 }

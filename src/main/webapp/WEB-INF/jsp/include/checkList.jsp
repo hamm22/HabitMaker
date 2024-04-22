@@ -13,7 +13,6 @@
 <body>
 
 			<div class="right-box">
-
 				<div class="date d-flex justify-content-center">
 					<i class="bi bi-chevron-left"></i>
 					<div>오늘날짜</div>
@@ -56,6 +55,7 @@
 				<div class="content-box">
 					<textarea class="form-control mt-3" rows="7" id="descriptionInput"></textarea>
 				</div>
+				<button type="button" id="descriptionBtn">완료</button>
 				<i class="bi bi-plus-circle-fill"></i>
 			</div>
 
@@ -114,16 +114,31 @@
 		});
 		
 		$(".check-icon").on("click", function(){
-		
-			let completed = $("#completedInput").val();
 			
+			let completed = false;
+			
+			let currentChecked = $(this).data("checked");
+			if(currentChecked) {
+				// 이벤트가 발생된 그 때 체크가 되어있다
+				$(this).data("checked", false);
+            	$(this).attr('class','bi bi-square check-icon');
+            	//체크 해제
+            	completed = false;
+			} else {
+				// 이벤트가 발생된 그 때 체크가 안되어 있다
+				$(this).data("checked", true);
+				$(this).attr('class','bi bi-check-square-fill check-icon');
+				// 체크
+				completed = true;
+			}
+            
 			$.ajax({
-				type:"post"
+				type:"put"
 				, url: "/todo/status"
-			    , data: {"completed" : completed} 
+			    ,  data: { "id": id,"completed" : completed} 
 				, success:function(data) {
 					if (data.result == "success") {
-						location.reload();
+						
 					} else {
 					alert("체크 작성 실패");
 					}
@@ -133,20 +148,34 @@
 				}
 		});
 	});
-	});
-	
-	
-	 var i = 0;
-     $('i').on('click',function(){
-         if(i==0){
-             $(this).attr('class','bi bi-check-square-fill check-icon');
-             i++;
-         }else if(i==1){
-             $(this).attr('class','bi bi-square check-icon');
-             i--;
-         }
+		
+		$("#descriptionBtn").on("click", function(){
+			
+			let description = $("#descriptionInput").val();
+			
+			if(description == "") {
+				alert("할일을 입력하세요");
+				return ;
+			}
+			
+			
+			$.ajax({
+				type : "post"
+				, url: "/todo/description"
+				, data: {"description" : description}
+			, success:function(data) {
+				if (data.result == "success") {
+					alert("성공");
+				} else {
+				alert("설명 작성 실패");
+				}
+			} , error:function() {
+				alert("설명 작성 에러");
+			}
+			});
+		});
 
-     });
+	});
 	
 </script>
 

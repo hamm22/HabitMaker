@@ -7,7 +7,7 @@
 
 	<insert id="insertTodo" parameterType="map">
 		INSERT INTO
-			`to_do`
+			`todo`
 		(
 			`userId`
 			, `title`
@@ -26,25 +26,34 @@
 			, `title`
 			, `completed`
 			, `description`
-			, `due_date`
+			, `dueDate`
 			, `createdAt`
 			, `updatedAt`
 		FROM
-			`to_do`
+			`todo`
 	</select>
 	
-	<insert id="insertCompleted" parameterType="map">
+	<update id="updateCompleted" parameterType="map">
+			UPDATE
+				`todo`
+			SET 
+				`completed` = #{completed}
+				, `updatedAt` = now()
+			WHERE `id` = #{id}
+	</update>
+	
+	<insert id="insertDescription" parameterType="map">
 		INSERT INTO
-				`to_do`
-			(
-				`userId`
-				, `completed`
-			)
-			VALUE 
-			(
-				#{userId}
-				, #{completed}
-			)
-	</insert>
+		`todo`
+		(
+		 `userId`
+		 , `description`
+		)
+		VALUE
+		(
+			#{userId}
+		 , #{description}
+		)
+</insert>
 
 </mapper>

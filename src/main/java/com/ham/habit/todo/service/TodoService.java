@@ -23,8 +23,12 @@ public class TodoService {
 		return todoList;
 	}
 	
-	public int addCompleted(int userId, Boolean completed){
-		return todoRepository.insertCompleted(userId, completed);
+	public int updateCompleted(int id, Boolean completed){
+		return todoRepository.updateCompleted(id, completed);
+	}
+	
+	public int addDescription(int userId, String description){
+		return todoRepository.insertDescription(userId, description);
 	}
 	
 }

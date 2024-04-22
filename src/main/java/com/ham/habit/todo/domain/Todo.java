@@ -8,7 +8,7 @@ public class Todo {
 	private String title;
 	private Boolean completed;
 	private String description;
-	private Date due_date;
+	private Date dueDate;
 	public int getId() {
 		return id;
 	}
@@ -39,11 +39,11 @@ public class Todo {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Date getDue_date() {
-		return due_date;
+	public Date getDueDate() {
+		return dueDate;
 	}
-	public void setDue_date(Date due_date) {
-		this.due_date = due_date;
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
 	}
-	
+
 }
