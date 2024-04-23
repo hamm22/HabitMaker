@@ -54,6 +54,17 @@
 			#{userId}
 		 , #{description}
 		)
-</insert>
+	</insert>
+	
+	<update id="updateDescription" parameterType="map">
+		UPDATE
+			`todo`
+		SET
+			`description` = #{description}
+			, `updatedAt` = now()
+		WHERE
+			`id` = #{id}
+		
+	</update>
 
 </mapper>

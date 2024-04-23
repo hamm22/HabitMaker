@@ -38,7 +38,6 @@ public class TodoRestController {
 			resultMap.put("result", "fail");
 		}
 		return resultMap;
-		
 	}
 	
 	@PutMapping("/status")
@@ -57,6 +56,7 @@ public class TodoRestController {
 		return resultMap;		
 	}
 
+	// 설명 생성
 	@PostMapping("/description")
 	public Map<String, String> inputDescription(@RequestParam("description") String description
 													, HttpSession session){
@@ -75,7 +75,22 @@ public class TodoRestController {
 		return resultMap;		
 	}
 	
+	// 설명 수정
+	@PutMapping("/description-update")
+	public Map<String, String> updateDescription(@RequestParam("id") int id
+												, @RequestParam("description") String description){
 	
+		int count = todoService.updateDescription(id, description);
+	
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(count == 1) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		return resultMap;		
+	}
 	
 //	// 할일 삭제
 //	@DeleteMapping("/delete")

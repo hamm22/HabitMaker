@@ -20,24 +20,15 @@
 				</div>
 
 		<div class="todoList mt-3">
-			<c:forEach var="todo" items="${todoList}">
-				<div class="d-flex ml-2 mt-1">
-					<%-- 					<input type="checkbox" data-todo-id="${todo.id}" id="checkbox"> --%>
+		<c:forEach var="todo" items="${todoList}">
+		  <c:if test="${not empty todo.title}">  <div class="d-flex ml-2 mt-1">
+		      <i class="bi bi-square check-icon" id="completedInput" data-todo-id="${todo.id}"></i>
+		      <div class="ml-2">${todo.title}</div>
+		      <i class="bi bi-three-dots ml-2"></i>
+		    </div>
+		  </c:if>
+		</c:forEach>
 
-<%-- 					<c:choose> --%>
-<%-- 						<c:when test="${todo.completed }"> --%>
-<%-- 							<i class="bi bi-square check-icon" data-post-id="${todo.id }"></i> --%>
-<%-- 						</c:when> --%>
-<%-- 						<c:otherwise> --%>
-<%-- 							<i class="bi bi-check-square-fill check-icon" data-post-id="${todo.id }"></i> --%>
-<%-- 						</c:otherwise> --%>
-<%-- 					</c:choose> --%>
-			 		
-			 		<i class="bi bi-square check-icon" id="completedInput"></i>
-					<div class="ml-2">${todo.title }</div>
-					<i class="bi bi-three-dots ml-2"></i>
-				</div>
-			</c:forEach>
 		</div>
 
 		<form id="todoForm">
@@ -52,10 +43,21 @@
 					</ul>
 				</form>
 				
+				
 				<div class="content-box">
-					<textarea class="form-control mt-3" rows="7" id="descriptionInput"></textarea>
+				<c:set var="count" value="0" scope="page" />
+					<c:forEach var="todo" items="${todoList}">
+					 <c:if test="${not empty todo.description}">
+					 <c:if test="${count eq 0}">
+					<textarea class="form-control mt-3" rows="7" id="descriptionInput contentBox" data-todo-id="${todo.id}">${todo.description}</textarea>
+					 <c:set var="count" value="1" scope="page" />
+					</c:if>
+					</c:if>
+					</c:forEach>
 				</div>
-				<button type="button" id="descriptionBtn">완료</button>
+				
+		<button type="button" id="descriptionUpdateBtn">수정</button>
+		<button type="button" id="descriptionBtn">완료</button>
 				<i class="bi bi-plus-circle-fill"></i>
 			</div>
 
@@ -116,6 +118,7 @@
 		$(".check-icon").on("click", function(){
 			
 			let completed = false;
+		 	let id = $(this).data("todo-id");
 			
 			let currentChecked = $(this).data("checked");
 			if(currentChecked) {
@@ -138,7 +141,7 @@
 			    ,  data: { "id": id,"completed" : completed} 
 				, success:function(data) {
 					if (data.result == "success") {
-						
+						location.reload();
 					} else {
 					alert("체크 작성 실패");
 					}
@@ -149,6 +152,7 @@
 		});
 	});
 		
+		// 설명 생성
 		$("#descriptionBtn").on("click", function(){
 			
 			let description = $("#descriptionInput").val();
@@ -157,7 +161,6 @@
 				alert("할일을 입력하세요");
 				return ;
 			}
-			
 			
 			$.ajax({
 				type : "post"
@@ -171,6 +174,34 @@
 				}
 			} , error:function() {
 				alert("설명 작성 에러");
+			}
+			});
+		});
+		
+		// 설명 수정
+		$("#descriptionUpdateBtn").on("click", function(){
+			
+			let description = $("#descriptionInput").val();
+			let id = $("#contentBox").data("todo-id");
+			
+			if(description == "") {
+				alert("할일을 입력하세요");
+				return ;
+			}
+			
+			
+			$.ajax({
+				type : "put"
+				, url: "/todo/description-update"
+				, data: {"id": id, "description" : description}
+			, success:function(data) {
+				if (data.result == "success") {
+					location.reload();
+				} else {
+				alert("설명 수정 실패");
+				}
+			} , error:function() {
+				alert("설명 수정 에러");
 			}
 			});
 		});

@@ -20,4 +20,9 @@ public interface TodoRepository {
 	
 	public int insertDescription(@Param("userId")int userId
 			, @Param("description") String description);
+	
+	public int updateDescription(@Param("id")int id
+									, @Param("description") String description);	
+	
+	
 }
