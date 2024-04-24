@@ -36,16 +36,7 @@
 <!-- //fullcalendar 언어 설정관련 script -->
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
 <script>
-//       document.addEventListener('DOMContentLoaded', function() {
-//         var calendarEl = document.getElementById('calendar');
-//         var calendar = new FullCalendar.Calendar(calendarEl, {
-//           initialView: 'dayGridMonth'
-//         });
-//         calendar.render();
-//       });
-
-
-document.addEventListener('DOMContentLoaded', function() {
+	document.addEventListener('DOMContentLoaded', function() {
 	var calendarEl = document.getElementById('calendar');
 	var calendar = new FullCalendar.Calendar(calendarEl, {
 		initialView : 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)

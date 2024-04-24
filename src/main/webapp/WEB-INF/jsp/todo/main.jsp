@@ -13,8 +13,6 @@
 </head>
 <body>
 
-
-
 	<div id="wrap">
 		<section class="d-flex">
 	

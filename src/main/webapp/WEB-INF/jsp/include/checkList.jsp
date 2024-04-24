@@ -33,7 +33,6 @@
 
 		<form id="todoForm">
 					<ul class="todo">
-					
 					<div class="todo-box d-flex ml-2">
 						<div class="new-todo-item">
 							<input type="checkbox"> <input type="text" placeholder="습관 입력" id="titleInput">
@@ -47,11 +46,11 @@
 				<div class="content-box">
 				<c:set var="count" value="0" scope="page" />
 					<c:forEach var="todo" items="${todoList}">
-					 <c:if test="${not empty todo.description}">
+<%-- 					 <c:if test="${not empty todo.description}"> --%>
 					 <c:if test="${count eq 0}">
 					<textarea class="form-control mt-3" rows="7" id="descriptionInput contentBox" data-todo-id="${todo.id}">${todo.description}</textarea>
 					 <c:set var="count" value="1" scope="page" />
-					</c:if>
+<%-- 					</c:if> --%>
 					</c:if>
 					</c:forEach>
 				</div>
@@ -189,7 +188,6 @@
 				return ;
 			}
 			
-			
 			$.ajax({
 				type : "put"
 				, url: "/todo/description-update"
@@ -207,6 +205,18 @@
 		});
 
 	});
+	
+
+	const date = new Date();
+
+	const year = date.getFullYear();
+	const month = date.getMonth() + 1;
+	const day = date.getDate();
+
+	console.log('date: ' + date.toLocaleDateString('ko-kr'));
+	console.log('year: ' + year);
+	console.log('month: ' + month);
+	console.log('day: ' + day);
 	
 </script>
 
