@@ -12,56 +12,59 @@
 </head>
 <body>
 
-			<div class="right-box">
-				<div class="date d-flex justify-content-center">
-					<i class="bi bi-chevron-left"></i>
-					<div></div>
-					<i class="bi bi-chevron-right"></i>
-				</div>
+	<div class="right-box">
+		<div class="date d-flex justify-content-center">
+			<i class="bi bi-chevron-left"></i>
+			<div id="dueDate"> ${param.dueDate }</div>
+			<i class="bi bi-chevron-right"></i>
+		</div>
 
 		<div class="todoList mt-3">
-		<c:forEach var="todo" items="${todoList}">
-		  <c:if test="${not empty todo.title}">  <div class="d-flex ml-2 mt-1">
-		      <i class="bi bi-square check-icon" id="completedInput" data-todo-id="${todo.id}"></i>
-		      <div class="ml-2">${todo.title}</div>
-		      <i class="bi bi-three-dots ml-2"></i>
-		    </div>
-		  </c:if>
-		</c:forEach>
+			<c:forEach var="todo" items="${todoList}">
+				<c:if test="${not empty todo.title}">
+					<div class="d-flex ml-2 mt-1">
+						<i class="bi bi-square check-icon" id="completedInput" data-todo-id="${todo.id}"></i>
+						<div class="ml-2">${todo.title}</div>
+						<i class="bi bi-three-dots ml-2"></i>
+					</div>
+				</c:if>
+			</c:forEach>
 
 		</div>
 
 		<form id="todoForm">
-					<ul class="todo">
-					<div class="todo-box d-flex ml-2">
-						<div class="new-todo-item">
-							<input type="checkbox"> <input type="text" placeholder="습관 입력" id="titleInput">
-						</div>
-						<i class="bi bi-three-dots ml-2"></i>
+			<ul class="todo">
+				<div class="todo-box d-flex ml-2">
+					<div class="new-todo-item">
+						<input type="checkbox"> <input type="text"
+							placeholder="습관 입력" id="titleInput">
 					</div>
-					</ul>
-				</form>
-				
-				
-				<div class="content-box">
-				<c:set var="count" value="0" scope="page" />
-					<c:forEach var="todo" items="${todoList}">
-<%-- 					 <c:if test="${not empty todo.description}"> --%>
-					 <c:if test="${count eq 0}">
-					<textarea class="form-control mt-3" rows="7" id="descriptionInput contentBox" data-todo-id="${todo.id}">${todo.description}</textarea>
-					 <c:set var="count" value="1" scope="page" />
-<%-- 					</c:if> --%>
-					</c:if>
-					</c:forEach>
+					<i class="bi bi-three-dots ml-2"></i>
 				</div>
-				
+			</ul>
+		</form>
+
+
+		<div class="content-box">
+			<c:set var="count" value="0" scope="page" />
+			<c:forEach var="todo" items="${todoList}">
+				<%-- 					 <c:if test="${not empty todo.description}"> --%>
+				<c:if test="${count eq 0}">
+					<textarea class="form-control mt-3" rows="7"
+						id="descriptionInput contentBox" data-todo-id="${todo.id}">${todo.description}</textarea>
+					<c:set var="count" value="1" scope="page" />
+					<%-- 					</c:if> --%>
+				</c:if>
+			</c:forEach>
+		</div>
+
 		<button type="button" id="descriptionUpdateBtn">수정</button>
 		<button type="button" id="descriptionBtn">완료</button>
-				<i class="bi bi-plus-circle-fill"></i>
-			</div>
+		<i class="bi bi-plus-circle-fill"></i>
+	</div>
 
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -92,16 +95,22 @@
 			e.preventDefault();
 		
 			let title = $("#titleInput").val();
+			let dueDate = $("#dueDate").text();
 			
 			if(title == "") {
 				alert("할일을 입력하세요");
 				return ;
 			}
 			
+			if(dueDate == ""){
+				alert("날짜를 선택하세요");
+				return ;
+			}
+			
 			$.ajax({
 				type : "post"
 				, url: "/todo/create"
-				, data: {"title" : title}
+				, data: {"title" : title, "dueDate": dueDate}
 			, success:function(data) {
 				if (data.result == "success") {
 					location.reload();

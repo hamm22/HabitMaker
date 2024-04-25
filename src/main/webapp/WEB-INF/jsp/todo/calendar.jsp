@@ -54,8 +54,9 @@
 		nowIndicator: true, // 현재 시간 마크
 		locale: 'ko', // 한국어 설정
 		
+		// 날짜 이동
 		dateClick: function(info) {
-		 alert('a day has been clicked!' + info.dateStr);
+		 location.href="/todo/calendar-view?dueDate=" + info.dateStr;
 		}
 	});
 	calendar.render();

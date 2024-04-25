@@ -22,7 +22,15 @@ public class TodoController {
 	private TodoService todoService;
 	
 	@GetMapping("/main-view")
-	public String inputMain() {
+	public String inputMain(Model model
+							, @RequestParam("dueDate") String dueDate
+							, HttpSession session) {
+		
+		int userId = (Integer)session.getAttribute("userId");
+		
+		List<Todo> todoList = todoService.getTodo(userId, dueDate);
+		model.addAttribute("todoList", todoList);
+		
 		return "todo/main";
 	}
 	
