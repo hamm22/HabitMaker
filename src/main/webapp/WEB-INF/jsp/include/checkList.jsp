@@ -15,7 +15,7 @@
 			<div class="right-box">
 				<div class="date d-flex justify-content-center">
 					<i class="bi bi-chevron-left"></i>
-					<div>오늘날짜</div>
+					<div></div>
 					<i class="bi bi-chevron-right"></i>
 				</div>
 
@@ -205,7 +205,6 @@
 		});
 
 	});
-	
 
 	const date = new Date();
 

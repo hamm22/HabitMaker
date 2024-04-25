@@ -11,15 +11,17 @@
 		(
 			`userId`
 			, `title`
+			, `dueDate`
 		)
 		VALUE 
 		(
 			#{userId}
 			, #{title}
+			, #{dueDate}	
 		)
 	</insert>
 	
-	<select id="selectTodoList" resultType="com.ham.habit.todo.domain.Todo">
+	<select id="selectTodoList" parameterType="map" resultType="com.ham.habit.todo.domain.Todo">
 		SELECT
 			`id`
 			, `userId`
@@ -31,6 +33,9 @@
 			, `updatedAt`
 		FROM
 			`todo`
+		WHERE
+			`userId` = #{userId}
+			AND `dueDate`= #{dueDate}	
 	</select>
 	
 	<update id="updateCompleted" parameterType="map">
@@ -66,5 +71,6 @@
 			`id` = #{id}
 		
 	</update>
+
 
 </mapper>

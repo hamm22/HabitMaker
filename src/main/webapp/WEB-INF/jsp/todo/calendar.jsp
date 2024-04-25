@@ -13,7 +13,6 @@
   </head>
   <body>
   
-
 	<div id="wrap">
 	<section class="d-flex">
 		<c:import url="/WEB-INF/jsp/include/nav.jsp" />
@@ -53,10 +52,15 @@
 		droppable : true,
 		editable : true,
 		nowIndicator: true, // 현재 시간 마크
-		locale: 'ko' // 한국어 설정
+		locale: 'ko', // 한국어 설정
+		
+		dateClick: function(info) {
+		 alert('a day has been clicked!' + info.dateStr);
+		}
 	});
 	calendar.render();
 });
+	
 </script>
 
 </body>

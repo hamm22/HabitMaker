@@ -1,5 +1,6 @@
 package com.ham.habit.todo.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ public class TodoService {
 	@Autowired
 	private TodoRepository todoRepository;
 	
-	public int addTodo(int userId, String title) {
-		return todoRepository.insertTodo(userId, title);
+	public int addTodo(int userId, String title, String dueDate) {
+		return todoRepository.insertTodo(userId, title, dueDate);
 	}
 	
-	public List<Todo> getTodo(int loginUserId){
-		List<Todo> todoList = todoRepository.selectTodoList();
+	public List<Todo> getTodo(int loginUserId, String dueDate){
+		List<Todo> todoList = todoRepository.selectTodoList(loginUserId, dueDate);
 		return todoList;
 	}
 	

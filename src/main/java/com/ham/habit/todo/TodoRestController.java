@@ -1,5 +1,6 @@
 package com.ham.habit.todo;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,11 +25,12 @@ public class TodoRestController {
 	
 	@PostMapping("/create")
 	public Map<String, String> inputTodo( @RequestParam("title") String title
+			 							  , @RequestParam("dueDate") String dueDate
 										, HttpSession session) {
 		
 		int userId = (Integer)session.getAttribute("userId");
 		
-		int count = todoService.addTodo(userId, title);
+		int count = todoService.addTodo(userId, title, dueDate);
 		
 		Map<String, String> resultMap = new HashMap<>();
 		
@@ -93,13 +95,10 @@ public class TodoRestController {
 	}
 	
 	// 할일 삭제
-//	@DeleteMapping("/delete")
-//	public Map<String, String> DeleteTodo(@RequestParam("id") int id){
-//		int count = todoService.
+	//	@DeleteMapping("/delete")
+	//	public Map<String, String> DeleteTodo(@RequestParam("id") int id){
+	//		int count = todoService.
 	
-	// 달력
-//	public int Calendar() {
-//		
-//	}
+
 
 }
