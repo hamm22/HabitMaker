@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>그룹찾기 페이지</title>
+<title>그룹생성 페이지</title>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -24,7 +24,7 @@
 				<div class="join-box">
 				<i class="bi bi-arrow-left-short" onclick="find()"></i>
 				
-				<h3 class="text-center ">그룹 만들기</h3>
+				<h3 class="text-center">그룹 만들기</h3>
 				<input type="text" placeholder="그룹명을 적어주세요." class="form-control mt-4" id="nameInput">
 				<input type="text" placeholder="목표를 적어주세요." class="form-control mt-3 " id="titleInput">
 				<textarea rows="4" class="form-control mt-3" id="descriptionInput"
@@ -46,7 +46,7 @@
 <script type="text/javascript">
 
 	function find() {
-		  window.location.href = "/group/find-view";
+		  window.location.href = "/group/list-view";
 		}
 	
 	$(document).ready(function() {

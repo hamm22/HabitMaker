@@ -102,3 +102,24 @@ button:focus {
 	width: 800px;
 	border-radius: 10px;	
 }
+
+/* 그룸목록 페이지 */
+.group-room{
+	 border: 1px solid #DBDBDB;
+	 border-radius: 10px;
+
+}
+
+.group-element{
+	padding: 10px;
+}
+
+#MoveBtn{
+	width: 200px;
+	border-radius: 10px;
+	font-size: 10px;
+	padding: 20px;
+  	margin: 20px;
+}
+
+

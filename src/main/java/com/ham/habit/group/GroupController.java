@@ -17,4 +17,9 @@ public class GroupController {
 	public String inputGroupJoin() {
 		return "group/join";
 	}
+	
+	@GetMapping("/list-view")
+	public String groupList() {
+		return "group/list";
+	}
 }
