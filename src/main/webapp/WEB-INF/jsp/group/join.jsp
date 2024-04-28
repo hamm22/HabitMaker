@@ -25,8 +25,8 @@
 				<i class="bi bi-arrow-left-short" onclick="find()"></i>
 				
 				<h3 class="text-center ">그룹 만들기</h3>
-				<input type="text" placeholder="그룹명을 적어주세요." class="form-control mt-4 post-editor" id="nameInput">
-				<input type="text" placeholder="목표를 적어주세요." class="form-control mt-3 join-text" id="titleInput">
+				<input type="text" placeholder="그룹명을 적어주세요." class="form-control mt-4" id="nameInput">
+				<input type="text" placeholder="목표를 적어주세요." class="form-control mt-3 " id="titleInput">
 				<textarea rows="4" class="form-control mt-3" id="descriptionInput"
 				placeholder="설명(선택사항)
 어떤 그룹인지 설명해주세요. (가입 규칙 또는 응원 문구등!)"></textarea>
