@@ -12,4 +12,9 @@ public class GroupController {
 	public String inputGroupFind() {
 		return "group/find";
 	}
+	
+	@GetMapping("/join-view")
+	public String inputGroupJoin() {
+		return "group/join";
+	}
 }
