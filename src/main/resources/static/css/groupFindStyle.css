@@ -58,13 +58,14 @@
   padding-right: 200px;
 } 
  
-.join{
- 	border-radius: 10px;
- 	height:50px;
+#nameInput, #titleInput{
+	height:50px;
+ 	border-radius: 8px;
+ 	
  }
-.join2{
+#descriptionInput{
  	border-radius: 10px;
- 	height:200px;
+ 	height:170px;
  }
 
 .bi-arrow-left-short{
