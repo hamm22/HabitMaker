@@ -24,9 +24,9 @@ public class GroupRestController {
 	public Map<String, String> createGroup(
 										@RequestParam("name") String name
 										, @RequestParam("title") String title
-										, @RequestParam("description") String description
+										, @RequestParam(value="description", required=false) String description // null이어도 받아옴
 										, HttpSession session){
-	
+		
 	int userId = (Integer)session.getAttribute("userId");
 	
 	int count = groupService.addGroup(userId, name, title, description);

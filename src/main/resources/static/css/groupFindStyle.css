@@ -58,11 +58,11 @@
   padding-right: 200px;
 } 
  
-#join{
+.join{
  	border-radius: 10px;
  	height:50px;
  }
-#join2{
+.join2{
  	border-radius: 10px;
  	height:200px;
  }
