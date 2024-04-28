@@ -57,7 +57,6 @@
 	
 	var dateString = year + '-' + month  + '-' + day;
 
-
 	$(document).ready(function() {
 
 		$("#loginForm").on("submit", function(e) {

@@ -25,7 +25,7 @@
 					<div class="d-flex ml-2 mt-1">
 						<i class="bi bi-square check-icon" id="completedInput" data-todo-id="${todo.id}"></i>
 						<div class="ml-2">${todo.title}</div>
-						<i class="bi bi-three-dots ml-2"></i>
+						<i class="bi bi-three-dots ml-2" id="deleteBtn" data-todo-id="${todo.id}"></i>
 					</div>
 				</c:if>
 			</c:forEach>
@@ -36,10 +36,9 @@
 			<ul class="todo">
 				<div class="todo-box d-flex ml-2">
 					<div class="new-todo-item">
-						<input type="checkbox"> <input type="text"
-							placeholder="습관 입력" id="titleInput">
+						<input type="checkbox"> <input type="text" placeholder="습관 입력" id="titleInput">
 					</div>
-					<i class="bi bi-three-dots ml-2"></i>
+<!-- 					<i class="bi bi-three-dots ml-2"></i> -->
 				</div>
 			</ul>
 		</form>
@@ -212,19 +211,42 @@
 			}
 			});
 		});
+		
+		// 할일 삭제
+		$("#deleteBtn").on("click", function(){
+			
+			let id = $(this).data("todo-id");
+			
+			$.ajax({
+				type : "delete"
+				, url: "/todo/delete"
+				, data: {"id": id}
+				, success:function(data) {
+				if (data.result == "success") {
+					location.reload();
+				} else {
+				alert("할일 삭제 실패");
+				}
+				}
+				, error:function() {
+				alert("할일 삭제 에러");
+				}
+			});
+		});		
+		
 
 	});
 
-	const date = new Date();
+// 	const date = new Date();
 
-	const year = date.getFullYear();
-	const month = date.getMonth() + 1;
-	const day = date.getDate();
+// 	const year = date.getFullYear();
+// 	const month = date.getMonth() + 1;
+// 	const day = date.getDate();
 
-	console.log('date: ' + date.toLocaleDateString('ko-kr'));
-	console.log('year: ' + year);
-	console.log('month: ' + month);
-	console.log('day: ' + day);
+// 	console.log('date: ' + date.toLocaleDateString('ko-kr'));
+// 	console.log('year: ' + year);
+// 	console.log('month: ' + month);
+// 	console.log('day: ' + day);
 	
 </script>
 

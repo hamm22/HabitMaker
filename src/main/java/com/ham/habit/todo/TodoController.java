@@ -27,7 +27,7 @@ public class TodoController {
 							, HttpSession session) {
 		
 		int userId = (Integer)session.getAttribute("userId");
-		
+	
 		List<Todo> todoList = todoService.getTodo(userId, dueDate);
 		model.addAttribute("todoList", todoList);
 		

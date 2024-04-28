@@ -1,6 +1,5 @@
 package com.ham.habit.todo.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,22 @@ public class TodoService {
 		List<Todo> todoList = todoRepository.selectTodoList(loginUserId, dueDate);
 		return todoList;
 	}
+	
+	public Todo getTodo(int id) {
+		return todoRepository.selectTodo(id);
+	}
+	
+	// 할일 삭제
+	public int deleteTodo(int userId, int id) {
+		Todo todo = todoRepository.selectTodo(id);
+		
+		if(userId != todo.getUserId()) {
+			return -1;
+		}
+		
+		return todoRepository.deleteTodo(id);
+	}
+	
 	
 	public int updateCompleted(int id, Boolean completed){
 		return todoRepository.updateCompleted(id, completed);

@@ -42,6 +42,7 @@ public class TodoRestController {
 		return resultMap;
 	}
 	
+	// 할일 생성
 	@PutMapping("/status")
 	public Map<String, String> updateCompleted(@RequestParam("id") int id
 												, @RequestParam("completed") Boolean completed){
@@ -94,11 +95,24 @@ public class TodoRestController {
 		return resultMap;		
 	}
 	
-	// 할일 삭제
-	//	@DeleteMapping("/delete")
-	//	public Map<String, String> DeleteTodo(@RequestParam("id") int id){
-	//		int count = todoService.
+	 // 할일 삭제
+	@DeleteMapping("/delete")
+	public Map<String, String> deleteWork(@RequestParam("id") int id
+											, HttpSession session){
 	
+	int userId = (Integer)session.getAttribute("userId");
+	
+	int count = todoService.deleteTodo(userId, id);
+	
+	Map<String, String> resultMap = new HashMap<>();
 
-
+	if (count == 1) {
+		resultMap.put("result", "success");
+	} else {
+		resultMap.put("result", "fail");
+	}
+	
+	return resultMap;
+	}
+	
 }
