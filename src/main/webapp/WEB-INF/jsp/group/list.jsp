@@ -21,13 +21,13 @@
 			<!-- 메인 -->
 			<div class="main-box">
 				<div class="join-box">
-					<h4 class="text-center">내가 가입한 그룹</h4>
+					<h4 class="text-center"> ${userLoginId }님이 가입한 그룹</h4>
 					
 					<c:forEach var="group" items="${groupList }">
 					<div class="d-flex justify-content-between mt-5 group-room">
 						<div class="group-element">
 							<h4>${group.title }</h4>
-							<div>그룹장 : ${group.userLoginId }</div>
+							<div class="leader">그룹장 : ${group.userLoginId }</div>
 							<div class="mt-2">${group.description }</div>
 						</div>
 						<div>
