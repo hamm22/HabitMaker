@@ -23,4 +23,21 @@
 			)	
 	</insert>
 	
+	<select id="selectGroupList"
+	resultType="com.ham.habit.group.domain.Group">
+		SELECT
+			`id`
+			, `userId`
+			, `name`
+			, `title`
+			, `description`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`group`
+		ORDER BY
+			`id` DESC;
+	</select>
+	
+	
  </mapper>

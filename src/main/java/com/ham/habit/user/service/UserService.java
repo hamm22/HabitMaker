@@ -34,5 +34,10 @@ public class UserService {
 		return count != 0;
 	}
 	
+	// 사용자 정보 조회
+	public User getUser(int id) {
+		return userRepository.selectUser(id);
+	}
+	
 	
 }

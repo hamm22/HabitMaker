@@ -21,9 +21,10 @@
 			<!-- 메인 -->
 			<div class="main-box">
 				<input id="searchInput" type="search" class="input-search" placeholder="검색">
-			
+				<button type="button" id="">그룹새로 만들기</button>
 			</div>
-			<button type="button" id="descriptionUpdateBtn">수정</button>
+			
+			<div class="right-box"></div>
 		</section>
 	</div>
 	

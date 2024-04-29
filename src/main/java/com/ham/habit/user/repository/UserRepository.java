@@ -21,4 +21,7 @@ public interface UserRepository {
 
 	// 중복
 	public int selectCountId(@Param("loginId") String loginId);
+	
+	// 사용자 정보 조회
+	public User selectUser(@Param("id") int id);
 }

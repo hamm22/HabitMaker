@@ -49,4 +49,21 @@
 		WHERE 
 			`loginId` = #{loginId}
 	</select>
+	
+	<select id="selectUser" parameterType="int"
+   	resultType="com.ham.habit.user.domain.User">
+			SELECT
+					`id`
+					, `loginId`
+					, `email`
+					, `name`
+					, `password`
+					, `createdAt`
+					, `updatedAt`
+				FROM
+					`user`
+				WHERE
+					`id` = #{id}
+					
+	</select>
 </mapper>

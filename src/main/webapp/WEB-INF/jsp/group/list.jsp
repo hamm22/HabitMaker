@@ -23,20 +23,20 @@
 				<div class="join-box">
 					<h4 class="text-center">내가 가입한 그룹</h4>
 					
+					<c:forEach var="group" items="${groupList }">
 					<div class="d-flex justify-content-between mt-5 group-room">
 						<div class="group-element">
-							<h4>매일 운동하기</h4>
-							<div>그룹장 : 000님</div>
-							<div class="mt-2">같이 즐겁게 운동해요</div>
+							<h4>${group.title }</h4>
+							<div>그룹장 : ${group.userLoginId }</div>
+							<div class="mt-2">${group.description }</div>
 						</div>
 						<div>
 						 <button type="button" id="MoveBtn">그룹 페이지로 이동</button>
 						</div>
 					</div>
+					</c:forEach>
 					
 				</div>
-				
-	
 				
 			</div>
 
