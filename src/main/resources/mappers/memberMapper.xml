@@ -18,7 +18,23 @@
 				#{groupId}
 				, #{userId}
 				, #{completed}
-			)		
+			)
 	</insert>
+	
+	<select id="countByGroupIdAndUserId"  parameterType="map"
+	resultType="com.ham.habit.member.domain.Member">
+		SELECT
+			`id`
+			, `groupId`
+			, `userId`
+			, `completed`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`group_members`
+		WHERE
+			`groupId` = #{groupId}
+			AND `userId` = #{userId}
+	</select>
 
 </mapper>	

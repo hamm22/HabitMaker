@@ -9,6 +9,7 @@ public class GroupDetail {
 	
 	private int userId;
 	private String userLoginId;
+	
 	public int getId() {
 		return id;
 	}

@@ -141,9 +141,13 @@
 		
 		
 		$(".group-join-btn").on("click", function() {
-		
+			
 			let id = $(this).data("group-id");
+					
 			alert(id);
+			
+			if(memberR)
+			
 			$.ajax({
 				type:"post"
 				, url:"/group/sign-up"
@@ -160,9 +164,9 @@
 				}
 			});
 		});
-
 	});
-	
+		
+
 	// 왼쪽 슬라이드
 	function slideLeft() {
 		pos--;

@@ -22,6 +22,9 @@ public class GroupService {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private MemberService memberService;
+	
 	public int addGroup(int userId, String name, String title, String description) {
 		return groupRepository.insertGroup(userId, name, title, description);
 	}

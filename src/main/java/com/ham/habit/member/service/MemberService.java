@@ -15,5 +15,16 @@ public class MemberService {
 		return memberRepository.insertMember(groupId, userId, completed);
 	}
 	
+	public boolean isMemberByGroupIdAndUserId(int groupId, int userId) {
+		int count = memberRepository.countByGroupIdAndUserId(groupId, userId);
+		
+		if(count >= 1) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
 	
 }
