@@ -139,14 +139,12 @@
 			autoSlider = setInterval(slideRight, 3000);
 		});
 		
-		
+		// 그룹가입 버튼
 		$(".group-join-btn").on("click", function() {
 			
 			let id = $(this).data("group-id");
 					
 			alert(id);
-			
-			if(memberR)
 			
 			$.ajax({
 				type:"post"
