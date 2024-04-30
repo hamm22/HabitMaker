@@ -27,18 +27,19 @@ public class GroupRestController {
 										, @RequestParam(value="description", required=false) String description // null이어도 받아온다
 										, HttpSession session){
 		
-	int userId = (Integer)session.getAttribute("userId");
-	
-	int count = groupService.addGroup(userId, name, title, description);
-	
-	Map<String, String> resultMap = new HashMap<>();
-	
-	if(count == 1) {
-		resultMap.put("result", "success");
-	} else {
-		resultMap.put("result", "fail");
-	}
+		int userId = (Integer)session.getAttribute("userId");
+		
+		int count = groupService.addGroup(userId, name, title, description);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(count == 1) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
 	return resultMap;
-}
+	}
+
 		
 }

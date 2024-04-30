@@ -81,13 +81,13 @@
 				<div class="d-flex">
 					<c:forEach var="group" items="${groupList }">
 					<div class="group-card mr-2">
-						<div>그룹명 : ${group.title }</div>
+						<div>그룹명 : ${group.name }</div>
 						<div class="mt-2">그룹장 : ${group.userLoginId }</div>
+						<div class="mt-2">목표 : ${group.title }</div>
 						<div class="mt-2">설명 : ${group.description }</div>
-						<button type="button" class="mt-2" id="GroupJoinBtn">가입하기</button>
+						<button type="button" class="mt-2 group-join-btn" data-group-id="${group.id }">가입하기</button>
 					</div>
 					</c:forEach>
-					
 						
 				</div>
 			</div>
@@ -102,47 +102,35 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 <script>
 
-	//current position
 	var pos = 0;
-	//number of slides
 	var totalSlides = $('#slider-wrap ul li').length;
-	//get the slide width
 	var sliderWidth = $('#slider-wrap').width();
 
+	
 	$(document).ready(function() {
 
-		//set width to be 'x' times the number of slides
 		$('#slider-wrap ul#slider').width(sliderWidth * totalSlides);
 
-		//next slide  
 		$('#next').click(function() {
 			slideRight();
 		});
 
-		//previous slide
 		$('#previous').click(function() {
 			slideLeft();
 		});
 
-		//automatic slider
 		var autoSlider = setInterval(slideRight, 3000);
 
-		//for each slide 
 		$.each($('#slider-wrap ul li'), function() {
 
-			//create a pagination
 			var li = document.createElement('li');
 			$('#pagination-wrap ul').append(li);
 		});
 
-		//counter
 		countSlides();
 
-		//pagination
 		pagination();
 
-		//hide/show controls/btns when hover
-		//pause automatic slide when hover
 		$('#slider-wrap').hover(function() {
 			$(this).addClass('active');
 			clearInterval(autoSlider);
@@ -152,20 +140,29 @@
 		});
 		
 		
+		$(".group-join-btn").on("click", function() {
 		
-		$("#GroupJoinBtn").on("click", function() {
-			
+			let id = $(this).data("group-id");
+			alert(id);
+			$.ajax({
+				type:"post"
+				, url:"/group/sign-up"
+				, data:{"groupId":id}
+				, success:function(data) {
+					if(data.result == "success") {
+						alert("그룹가입 성공");
+					} else {
+						alert("그룹가입 실패");
+					}
+				}
+				, error:function() {
+					alert("그룹가입 에러");
+				}
+			});
 		});
-		
 
 	});
 	
-	
-	
-	
-	
-	
-
 	// 왼쪽 슬라이드
 	function slideLeft() {
 		pos--;
@@ -174,7 +171,6 @@
 		}
 		$('#slider-wrap ul#slider').css('left', -(sliderWidth * pos));
 
-		//*> optional
 		countSlides();
 		pagination();
 	}
@@ -187,7 +183,6 @@
 		}
 		$('#slider-wrap ul#slider').css('left', -(sliderWidth * pos));
 
-		//*> optional 
 		countSlides();
 		pagination();
 	}

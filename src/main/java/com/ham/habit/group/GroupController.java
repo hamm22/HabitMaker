@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ham.habit.group.dto.GroupDetail;
 import com.ham.habit.group.service.GroupService;
-
 import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/group")
@@ -19,6 +18,7 @@ public class GroupController {
 	
 	@Autowired
 	private GroupService groupService;
+	
 	
 	@GetMapping("/find-view")
 	public String inputGroupFind(Model model

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ham.habit.group.domain.Group;
 import com.ham.habit.group.dto.GroupDetail;
 import com.ham.habit.group.repository.GroupRepository;
+import com.ham.habit.member.service.MemberService;
 import com.ham.habit.user.domain.User;
 import com.ham.habit.user.service.UserService;
 
@@ -45,5 +46,6 @@ public class GroupService {
 			groupDetailList.add(groupDetail);
 			}
 		return groupDetailList;
+		
 	}
 }
