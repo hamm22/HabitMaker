@@ -21,7 +21,15 @@ public class GroupController {
 	private GroupService groupService;
 	
 	@GetMapping("/find-view")
-	public String inputGroupFind() {
+	public String inputGroupFind(Model model
+			, HttpSession session) {
+		
+		int userId = (Integer)session.getAttribute("userId");
+		
+		List<GroupDetail> groupList = groupService.getGroupList(userId);
+		
+		model.addAttribute("groupList", groupList);
+		
 		return "group/find";
 	}
 	
