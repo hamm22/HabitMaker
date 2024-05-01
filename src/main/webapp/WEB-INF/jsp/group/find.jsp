@@ -154,7 +154,7 @@
 					if(data.result == "success") {
 						alert("그룹가입 성공");
 					} else {
-						alert("그룹가입 실패");
+						alert("이미 가입한 그룹입니다!");
 					}
 				}
 				, error:function() {

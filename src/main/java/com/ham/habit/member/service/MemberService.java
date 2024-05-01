@@ -12,7 +12,19 @@ public class MemberService {
 	private MemberRepository memberRepository;
 	
 	public int addMember(int groupId, int userId, boolean completed) {
-		return memberRepository.insertMember(groupId, userId, completed);
+		
+		if(isMemberByGroupIdAndUserId(groupId, userId)) {
+			return -1;
+		} else {
+			return memberRepository.insertMember(groupId, userId, completed);	
+		}
+		
+		
+	}
+	
+	public int getMemberCount(int groupId) {
+		return memberRepository.countByGroupId(groupId);
+				
 	}
 	
 	public boolean isMemberByGroupIdAndUserId(int groupId, int userId) {

@@ -21,14 +21,13 @@ public class MemberRestController {
 	private MemberService memberService;
 	
 	@PostMapping("/sign-up")
-	public Map<String, String> JoinGroup(@RequestParam("groupId") int groupId
+	public Map<String, String> joinGroup(@RequestParam("groupId") int groupId
 											,@RequestParam(value = "completed", required = false) boolean completed
 											, HttpSession session) {
 
 		int userId = (Integer) session.getAttribute("userId");
 
 		int count = memberService.addMember(groupId, userId, completed);
-		
 
 		Map<String, String> resultMap = new HashMap<>();
 
