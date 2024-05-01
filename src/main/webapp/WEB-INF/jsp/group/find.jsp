@@ -80,6 +80,7 @@
 				
 				<div class="d-flex">
 					<c:forEach var="group" items="${groupList }">
+<%-- 					<c:if test="${userLoginId ne group.userLoginId }"> <!-- 그룹장이면 화면에 안나옴 --> --%>
 					<div class="group-card mr-2">
 						<div>그룹명 : ${group.name }</div>
 						<div class="mt-2">그룹장 : ${group.userLoginId }</div>
@@ -87,6 +88,7 @@
 						<div class="mt-2">설명 : ${group.description }</div>
 						<button type="button" class="mt-2 group-join-btn" data-group-id="${group.id }">가입하기</button>
 					</div>
+<%-- 					</c:if> --%>
 					</c:forEach>
 						
 				</div>
@@ -197,6 +199,8 @@
 		$('#pagination-wrap ul li').removeClass('active');
 		$('#pagination-wrap ul li:eq(' + pos + ')').addClass('active');
 	}
+	
+
 </script>	
 </body>
 </html>

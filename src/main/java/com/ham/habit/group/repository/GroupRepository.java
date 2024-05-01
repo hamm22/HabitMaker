@@ -17,4 +17,6 @@ public interface GroupRepository {
 	
 	public List<Group> selectGroupList();
 	
+	public Group selectGroup(@Param("id") int id);
+	
 }

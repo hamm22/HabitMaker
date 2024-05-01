@@ -22,7 +22,7 @@ public class MemberRestController {
 	
 	@PostMapping("/sign-up")
 	public Map<String, String> joinGroup(@RequestParam("groupId") int groupId
-											,@RequestParam(value = "completed", required = false) boolean completed
+											,@RequestParam(value = "completed", required=false) boolean completed
 											, HttpSession session) {
 
 		int userId = (Integer) session.getAttribute("userId");

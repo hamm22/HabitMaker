@@ -19,17 +19,18 @@
 				, #{userId}
 				, #{completed}
 			)
+			
 	</insert>
 	
-	<select id="countByGroupId" parameterType="map"
-	resultType="int">
-		SELECT
-			count(*)
-		FROM
-			`group_members`
-		WHERE
-			`groupId` = #{groupId};
-	</select>
+<!-- 	<select id="countByGroupId" parameterType="map" -->
+<!-- 	resultType="int"> -->
+<!-- 		SELECT -->
+<!-- 			count(*) -->
+<!-- 		FROM -->
+<!-- 			`group_members` -->
+<!-- 		WHERE -->
+<!-- 			`groupId` = #{groupId}; -->
+<!-- 	</select> -->
 	
 	<select id="countByGroupIdAndUserId"  parameterType="map"
 	resultType="int">
@@ -40,6 +41,21 @@
 		WHERE
 			`groupId` = #{groupId}
 			AND `userId` = #{userId}
+	</select>
+	
+	<select id="selectMemberList"
+	resultType="com.ham.habit.member.domain.Member">
+			SELECT
+			`id`
+			, `groupId`
+			, `userId`
+			, `completed`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`group_members`
+		ORDER BY
+			`id` DESC;
 	</select>
 
 </mapper>	
