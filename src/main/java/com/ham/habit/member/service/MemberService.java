@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ham.habit.group.domain.Group;
+import com.ham.habit.group.dto.GroupDetail;
 import com.ham.habit.group.service.GroupService;
 import com.ham.habit.member.domain.Member;
-import com.ham.habit.member.dto.MemberDetail;
 import com.ham.habit.member.repository.MemberRepository;
 import com.ham.habit.user.domain.User;
 import com.ham.habit.user.service.UserService;
@@ -54,30 +54,27 @@ public class MemberService {
 	}
 	
 	// 멤버 리스트 조회
-	public List<MemberDetail> getMemberList(int loginUserId){
-		List<Member> memberList = memberRepository.selectMemberList();
+	public List<GroupDetail> getMemberList(int loginUserId){
+		List<Member> memberList = memberRepository.selectMemberList(loginUserId);
 		
-		List<MemberDetail> memberDetailList = new ArrayList<>();
+		List<GroupDetail> groupDetailList = new ArrayList<>();
 		
 		for(Member member:memberList) {
 			
-		User user = userService.getUser(member.getUserId());
-		Group group = groupService.getGroup(member.getGroupId());
+			Group group = groupService.getGroup(member.getGroupId());
+			User user = userService.getUser(group.getUserId());
+			GroupDetail groupDetail = new GroupDetail();
+			
+			groupDetail.setId(group.getId());
+			groupDetail.setName(group.getName());
+			groupDetail.setTitle(group.getTitle());
+			groupDetail.setDescription(group.getDescription());
+			groupDetail.setUserId(group.getUserId());
+			groupDetail.setUserLoginId(user.getLoginId());
+			groupDetailList.add(groupDetail);
 		
-		MemberDetail memberDetail = new MemberDetail();
-		memberDetail.setId(member.getId());
-		memberDetail.setGroupId(member.getGroupId());
-		memberDetail.setGroupName(group.getName());
-		memberDetail.setGroupTitle(group.getTitle());
-		memberDetail.setGroupDescription(group.getDescription());
-		
-		memberDetail.setCompleted(member.getCompleted());
-		
-		memberDetail.setUserId(member.getUserId());
-		memberDetail.setUserLoginId(user.getLoginId());
-		memberDetailList.add(memberDetail);
 		}
-		return memberDetailList;
+		return groupDetailList;
 	}
 	
 

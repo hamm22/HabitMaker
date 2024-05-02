@@ -19,6 +19,6 @@ public interface MemberRepository {
 	public int countByGroupIdAndUserId(@Param("groupId") int groupId
 										, @Param("userId") int userId);
 	
-	public List<Member> selectMemberList();
+	public List<Member> selectMemberList(@Param("userId") int userId);
 	
 }

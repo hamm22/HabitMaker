@@ -25,7 +25,7 @@ public class GroupService {
 		return groupRepository.insertGroup(userId, name, title, description);
 	}
 	
-	public List<GroupDetail> getGroupList(int loginUserId){
+	public List<GroupDetail> getGroupList(){
 		List<Group> groupList = groupRepository.selectGroupList();
 		
 		List<GroupDetail> groupDetailList = new ArrayList<>();

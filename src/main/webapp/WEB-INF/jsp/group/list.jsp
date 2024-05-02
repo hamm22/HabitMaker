@@ -22,39 +22,14 @@
 			<div class="main-box">
 				<div class="join-box">
 					<h4 class="text-center"> ${userLoginId }님이 가입한 그룹</h4>
-					
-<%-- 					<c:forEach var="group" items="${groupList }"> --%>
-<!-- 					<div class="d-flex justify-content-between mt-5 group-room"> -->
-<!-- 						<div class="group-element"> -->
-<%-- 							<h4>${group.name }</h4> --%>
-<%-- 							<div class="leader">그룹장 : ${group.userLoginId }</div> --%>
-<%-- 							<div class="mt-2">목표 : ${group.title }</div> --%>
-<%-- 							<div class="mt-2">설명 : ${group.description }</div> --%>
-<!-- 						</div> -->
-<!-- 						<div> -->
-<!-- 						 <button type="button" id="MoveBtn">그룹 페이지로 이동</button> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<%-- 					</c:forEach> --%>
 
-					
-					
-					<c:forEach var="member" items="${memberList }">
-					<c:if test="${userLoginId eq member.userLoginId }"> 
-					<div class="leader">o : ${member.groupId  }</div>
-					<div class="leader">ㄱ : ${member.groupName}</div>
-					<div class="leader">ㄱ : ${member.groupTitle}</div>
-					<div class="leader">ㄱ : ${member.groupDescription}</div>
-					</c:if>
-					</c:forEach>
-					
-					<c:forEach var="group" items="${groupList }">
+					<c:forEach var="group" items="${groupList}">
 					<div class="d-flex justify-content-between mt-5 group-room">
 						<div class="group-element">
-							<h4>${group.name }</h4>
-							<div class="leader">그룹장 : ${group.userLoginId }</div>
-							<div class="mt-2">목표 : ${group.title }</div>
-							<div class="mt-2">설명 : ${group.description }</div>
+							<h4>${group.name}</h4>
+							<div class="leader">그룹장 : ${group.userLoginId}</div>
+							<div class="mt-2">목표 : ${group.title}</div>
+							<div class="mt-2">설명 : ${group.description}</div>
 						</div>
 						<div>
 						 <button type="button" id="MoveBtn">그룹 페이지로 이동</button>

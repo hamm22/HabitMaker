@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ham.habit.group.dto.GroupDetail;
 import com.ham.habit.group.service.GroupService;
-import com.ham.habit.member.dto.MemberDetail;
 import com.ham.habit.member.service.MemberService;
 
 import jakarta.servlet.http.HttpSession;
@@ -29,10 +28,9 @@ public class GroupController {
 	@GetMapping("/find-view")
 	public String inputGroupFind(Model model
 			, HttpSession session) {
+
 		
-		int userId = (Integer)session.getAttribute("userId");
-		
-		List<GroupDetail> groupList = groupService.getGroupList(userId);
+		List<GroupDetail> groupList = groupService.getGroupList();
 		
 		model.addAttribute("groupList", groupList);
 		
@@ -50,11 +48,9 @@ public class GroupController {
 		
 		int userId = (Integer)session.getAttribute("userId");
 		
-		List<GroupDetail> groupList = groupService.getGroupList(userId);
-		List<MemberDetail> memberList = memberService.getMemberList(userId);
+		List<GroupDetail> groupList = memberService.getMemberList(userId);
 		
 		model.addAttribute("groupList", groupList);
-		model.addAttribute("memberList", memberList);
 		
 		return "group/list";
 	}
