@@ -44,5 +44,4 @@ public class MemberDetail {
 		this.groupList = groupList;
 	}
 	
-	
 }

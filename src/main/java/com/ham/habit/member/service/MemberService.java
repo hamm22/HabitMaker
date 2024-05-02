@@ -53,7 +53,7 @@ public class MemberService {
 		
 	}
 	
-	// 멤버 리스트 조회
+	// 해당 그룹에 가입된 멤버 리스트 조회
 	public List<GroupDetail> getMemberList(int loginUserId){
 		List<Member> memberList = memberRepository.selectMemberList(loginUserId);
 		
@@ -76,7 +76,5 @@ public class MemberService {
 		}
 		return groupDetailList;
 	}
-	
-
 	
 }
