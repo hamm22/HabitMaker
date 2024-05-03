@@ -10,6 +10,8 @@
 
 .right-box{
 	width:40%;
+	border-left: 1px solid #DBDBDB;
+	background-color: #F6F6F6;
 }
 
 /* 그룹 설명 */
@@ -26,13 +28,13 @@
 .group-name{
 	 text-align: center;
 	 margin-right: 150px;
+	 font-weight: bold;
 }
 .group-title{
-	 font-weight: bold;
+	 font-weight: semi-bold;
 	 font-size: 20px;
 }
 .group-description{
-	font-weight: bold;
 	font-size: 18px;
 }
 .notice{
@@ -52,7 +54,7 @@
 }
 
 .contents-box{
-	width: 700px;
+	width: 650px;
 	height: auto;
 	border: none;
 	outline: none;
@@ -102,13 +104,16 @@
 	border-radius: 20px;
 }
 
+
 /* right-box */
 .complete-box {
 	padding: 10px;
 	width: 250px;
-	height: 300px;
-	border: 1px solid #DBDBDB;
+	height: auto;
+/* 	border: 1px solid #DBDBDB; */
 	border-radius: 12px;
+	margin: 0 auto;
+	background-color: #FFFFFF;
 }
 
 .goal{
@@ -116,7 +121,13 @@
 	padding: 50px;
 	width: 250px;
 	height: 200px;
-	background-color: lightgray;
+	background-color: #FFFFFF;
 	border-radius: 17px;
+	margin: 0 auto;
+}
+
+.btn-secondary{
+	margin-top: 210px;
+	width: 250px;
 }
 

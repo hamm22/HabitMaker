@@ -40,7 +40,7 @@
 							id="contentsInput" resize="vertical"></textarea>
 						<div class="d-flex post-contents2">
 							<i class="bi bi-card-image mr-3"></i>
-							<button type="button" class="btn btn-success" id="post-btn">게시하기</button>
+							<button type="button" class="btn btn-primary" id="post-btn">게시하기</button>
 						</div>
 					</div>
 				</div>
@@ -60,25 +60,28 @@
 			
 			<!-- /메인 -->
 			
-			<div class="right-box">
+			<div class="right-box text-center">
 				
 				<div>
-				<div>오늘 그룹의 완성도</div>
-					<div class="complete-box">
-						<div class="d-flex">
-							<div class="mr-3">사용자1</div>
-							<button type="button" class="btn btn-primary btn-sm ml-3">성공</button>
-							<button type="button" class="btn btn-light btn-sm ml-2">실패</button>
+				<div class="mt-3">오늘 그룹의 완성도</div>
+					<div class="complete-box mt-2">
+						<div class="d-flex justify-content-between">
+							<div>사용자1</div>
+							<div>
+								<button type="button" class="btn btn-primary btn-sm mr-2">성공</button>
+								<button type="button" class="btn btn-light btn-sm">실패</button>
+							</div>
 						</div>
 					
 					</div>
 				</div>
 				
-				<div class="goal">
+				<div class="goal mt-5">
 					<h5>오늘의 달성도</h5>
 					<h2 class="text-center mt-3">80%</h2>
-				
 				</div>
+				
+				<button type="button" class="btn btn-secondary">그룹 탈퇴하기</button>				
 			</div>
 		</section>
 	</div>
