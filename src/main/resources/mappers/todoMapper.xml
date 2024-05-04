@@ -82,19 +82,19 @@
 	
 	<select id="selectTodo" parameterType="int"
 	resultType="com.ham.habit.todo.domain.Todo">
-	SELECT
-		`id`
-		, `userId`
-		, `title`
-		, `completed`
-		, `description`
-		, `dueDate`
-		, `createdAt`
-		, `updatedAt`
-	FROM
-		`todo`
-	WHERE
-		`id` = #{id}
+		SELECT
+			`id`
+			, `userId`
+			, `title`
+			, `completed`
+			, `description`
+			, `dueDate`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`todo`
+		WHERE
+			`id` = #{id}
 	</select>
 
 

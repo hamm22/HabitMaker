@@ -26,6 +26,7 @@ public class MemberService {
 	@Autowired
 	private GroupService groupService;
 	
+	// 그룹 가입
 	public int addMember(int groupId, int userId, boolean completed) {
 		
 		if(isMemberByGroupIdAndUserId(groupId, userId)) { // 중복이 되었을때

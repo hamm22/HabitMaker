@@ -23,23 +23,29 @@
 			<div class="main-box">
 
 				<div class="post-group">
-					<i class="bi bi-arrow-left-short" onclick="find()"></i>
-					<div class="post-group-box">
-						<h5 class="group-name">그룹명</h5>
-						<div class="notice mt-3">
-							<div class="group-title">목표 :</div>
-							<div class="mt-3 group-description">설명 :</div>
-						</div>
-					</div>
+					<i class="bi bi-arrow-left-short" onclick="list()"></i>
+					 <input type="hidden" name="groupId" value="${groupId}">
+						<c:if test="${param.groupId == group.id}"><!-- 가입한 그룹만 조회 -->
+							<div class="post-group-box">
+								<h5 class="group-name">${group.name}</h5>
+								<div class="notice mt-3">
+									<div class="group-title">목표 : ${group.title}</div>
+									<div class="mt-3 group-description">설명 : ${group.description}</div>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
 				</div>
 
 				<!-- 게시글 입력칸 -->
 				<div class="post-box mt-3">
 					<div class="post-contents mt-3">
-						<textarea placeholder="게시글을 남겨 보세요." class="contents-box"
-							id="contentsInput" resize="vertical"></textarea>
+						<textarea placeholder="게시글을 남겨 보세요." class="contents-box" id="contentsInput" resize="vertical"></textarea>
 						<div class="d-flex post-contents2">
-							<i class="bi bi-card-image mr-3"></i>
+							<label for="fileInput">
+								<i class="bi bi-card-image mr-3"></i>
+							</label>
+							<input type="file" id="fileInput" style="display: none;">
 							<button type="button" class="btn btn-primary" id="post-btn">게시하기</button>
 						</div>
 					</div>
@@ -81,7 +87,7 @@
 					<h2 class="text-center mt-3">80%</h2>
 				</div>
 				
-				<button type="button" class="btn btn-secondary">그룹 탈퇴하기</button>				
+				<button type="button" class="btn btn-secondary">그룹 탈퇴하기</button>
 			</div>
 		</section>
 	</div>
@@ -90,12 +96,54 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 <script type="text/javascript">
-	
 	// 페이지 이동
-	function find() {
+	function list() {
 		  window.location.href = "/group/list-view";
 		}
 
+	$(document).ready(function() {
+
+		$("#post-btn").on("click", function() {
+
+			let contents = $("#contentsInput").val();
+			let file = $("#fileInput")[0].files[0]; 
+
+			if (contents == "") {
+				alert("내용을 입력하세요");
+				return;
+			}
+
+			if (file == null) {
+				alert("파일을 선택하세요.");
+				return;
+			}
+
+			let formData = new FormData();
+			formData.append("contents", contents);
+			formData.append("imageFile", file);
+			formData.append("groupId", param.groupId);
+
+			$.ajax({
+				type : "post",
+				url : "/post/create",
+				data : formData,
+				enctype : "multipart/form-data",
+				processData : false,
+				contentType : false,
+				success : function(data) {
+					if (data.result == "success") {
+						location.reload();
+					} else {
+						alert("게시글 작성 실패");
+					}
+				},
+				error : function() {
+					alert("게시글 작성 에러");
+				}
+			});
+
+		});
+	});
 </script>
 </body>
 </html>

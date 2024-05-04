@@ -237,17 +237,6 @@
 
 	});
 
-// 	const date = new Date();
-
-// 	const year = date.getFullYear();
-// 	const month = date.getMonth() + 1;
-// 	const day = date.getDate();
-
-// 	console.log('date: ' + date.toLocaleDateString('ko-kr'));
-// 	console.log('year: ' + year);
-// 	console.log('month: ' + month);
-// 	console.log('day: ' + day);
-	
 </script>
 
 </body>

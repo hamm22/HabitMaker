@@ -28,7 +28,6 @@ public class GroupController {
 	@GetMapping("/find-view")
 	public String inputGroupFind(Model model
 			, HttpSession session) {
-
 		
 		List<GroupDetail> groupList = groupService.getGroupList();
 		
