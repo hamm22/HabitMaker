@@ -21,10 +21,10 @@
 			
 			<!-- 메인 -->
 			<div class="main-box">
-
+	
+				<c:forEach var="group" items="${groupList}">
 				<div class="post-group">
 					<i class="bi bi-arrow-left-short" onclick="list()"></i>
-					<c:forEach var="group" items="${groupList}">
 						<c:if test="${param.groupId == group.id}"><!-- 가입한 그룹만 조회 -->
 							<div class="post-group-box">
 								<h5 class="group-name">${group.name}</h5>
@@ -34,7 +34,7 @@
 								</div>
 							</div>
 						</c:if>
-					</c:forEach>
+					
 				</div>
 
 				<!-- 게시글 입력칸 -->
@@ -46,10 +46,11 @@
 								<i class="bi bi-card-image mr-3"></i>
 							</label>
 							<input type="file" id="fileInput" style="display: none;">
-							<button type="button" class="btn btn-primary" id="post-btn">게시하기</button>
+							<button type="button" class="btn btn-primary post-btn" data-group-id="${group.id }">게시하기</button>
 						</div>
 					</div>
 				</div>
+				</c:forEach>
 
 				<div class="post-card">
 					<div class="post-card-list">
@@ -103,7 +104,12 @@
 
 	$(document).ready(function() {
 
-		$("#post-btn").on("click", function() {
+		$(".post-btn").on("click", function() {
+			
+			let id = $(this).data("group-id");
+			
+			alert(id);
+			
 
 			let contents = $("#contentsInput").val();
 			let file = $("#fileInput")[0].files[0]; 
@@ -121,7 +127,7 @@
 			let formData = new FormData();
 			formData.append("contents", contents);
 			formData.append("imageFile", file);
-			formData.append("groupId", param.groupId);
+			formData.append("groupId", id);
 
 			$.ajax({
 				type : "post",
