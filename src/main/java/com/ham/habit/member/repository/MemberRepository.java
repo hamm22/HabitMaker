@@ -13,12 +13,14 @@ public interface MemberRepository {
 	public int insertMember(@Param("groupId") int groupId
 							, @Param("userId") int userId
 							, @Param("completed") boolean completed);
-	//  조회
-//	public int countByGroupId(@Param("groupId") int groupId);
 	
 	public int countByGroupIdAndUserId(@Param("groupId") int groupId
 										, @Param("userId") int userId);
 	
 	public List<Member> selectMemberList(@Param("userId") int userId);
 	
+	public int updateCompleted(@Param("id")int id
+								, @Param("completed") Boolean completed);
+	
+	public List<Member> selectMember(@Param("userId") int userId);
 }

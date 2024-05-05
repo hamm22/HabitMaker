@@ -7,6 +7,10 @@ public class GroupDetail {
 	private String title;
 	private String description;
 	
+	//멤버
+	private boolean completed;
+	
+	
 	private int userId;
 	private String userLoginId;
 	
@@ -46,5 +50,12 @@ public class GroupDetail {
 	public void setUserLoginId(String userLoginId) {
 		this.userLoginId = userLoginId;
 	}
+	public boolean isCompleted() {
+		return completed;
+	}
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
+	}
+
 	
 }

@@ -8,6 +8,8 @@ public class MemberDetail {
 	private int id;
 	private Boolean completed;
 	
+	private int groupId;
+	
 	private List<GroupDetail> groupList;
 	
 	private int userId;
@@ -43,5 +45,12 @@ public class MemberDetail {
 	public void setGroupList(List<GroupDetail> groupList) {
 		this.groupList = groupList;
 	}
+	public int getGroupId() {
+		return groupId;
+	}
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
+	}
+	
 	
 }

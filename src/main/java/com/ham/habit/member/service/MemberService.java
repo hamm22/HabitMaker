@@ -37,11 +37,6 @@ public class MemberService {
 		
 	}
 	
-//	public int getMemberCount(int groupId) {
-//		return memberRepository.countByGroupId(groupId);
-//				
-//	}
-	
 	// 그룹 중복 방지
 	public boolean isMemberByGroupIdAndUserId(int groupId, int userId) {
 		int count = memberRepository.countByGroupIdAndUserId(groupId, userId);
@@ -72,10 +67,23 @@ public class MemberService {
 			groupDetail.setDescription(group.getDescription());
 			groupDetail.setUserId(group.getUserId());
 			groupDetail.setUserLoginId(user.getLoginId());
+			
+			
+			groupDetail.setCompleted(member.getCompleted());
+			
 			groupDetailList.add(groupDetail);
 		
 		}
 		return groupDetailList;
 	}
+	
+	public List<Member> getMemberListbyCompleted(int userId){
+		return memberRepository.selectMember(userId);
+	}
+	
+	public int updateCompleted(int id, Boolean completed) {
+		return memberRepository.updateCompleted(id, completed);
+	}
+	
 	
 }

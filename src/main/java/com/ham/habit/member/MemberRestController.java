@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +39,24 @@ public class MemberRestController {
 		}
 		
 		return resultMap;
+	}
+	
+	// 그룹 완성도 인증
+	@PutMapping("/validate")
+	public Map<String, String> createCompleted(@RequestParam("id") int id
+												,@RequestParam("completed") Boolean completed){
+		
+		int count = memberService.updateCompleted(id, completed);
+		
+		Map<String, String> resultMap = new HashMap<>();
+
+		if (count == 1) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		return resultMap;		
+		
 	}
 		
 	}

@@ -1,5 +1,6 @@
 package com.ham.habit.post;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,12 @@ public class PostController {
 		
 		List<GroupDetail> groupList = memberService.getMemberList(userId);
 		
+		List<com.ham.habit.member.domain.Member> memberList = memberService.getMemberListbyCompleted(userId);
+		
+		
 		model.addAttribute("postList", postList);
 		model.addAttribute("groupList", groupList);
+		model.addAttribute("memberList", memberList);
 		
 		return "post/groupBoardList";
 	}

@@ -22,7 +22,7 @@ public class PostService {
 	
 	@Autowired
 	private UserService userService;
-	
+
 	public int addPost(int groupId, int userId, String contents, MultipartFile imageFile) {
 		
 		String imagePath = FileManager.saveFile(userId, imageFile);

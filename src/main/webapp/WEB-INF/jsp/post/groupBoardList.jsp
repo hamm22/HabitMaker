@@ -23,9 +23,9 @@
 			<div class="main-box">
 	
 				<c:forEach var="group" items="${groupList}">
+				<c:if test="${param.groupId == group.id}"><!-- 가입한 그룹만 조회 -->
 				<div class="post-group">
 					<i class="bi bi-arrow-left-short" onclick="list()"></i>
-						<c:if test="${param.groupId == group.id}"><!-- 가입한 그룹만 조회 -->
 							<div class="post-group-box">
 								<h5 class="group-name">${group.name}</h5>
 								<div class="notice mt-3">
@@ -33,7 +33,7 @@
 									<div class="mt-3 group-description">설명 : ${group.description}</div>
 								</div>
 							</div>
-						</c:if>
+<%-- 						</c:if> --%>
 					
 				</div>
 
@@ -50,6 +50,7 @@
 						</div>
 					</div>
 				</div>
+				</c:if>
 				</c:forEach>
 				
 				<c:forEach var="post" items="${postList }">
@@ -71,18 +72,19 @@
 			<!-- /메인 -->
 			
 			<div class="right-box text-center">
-				
+			
 				<div>
 				<div class="mt-3">오늘 그룹의 완성도</div>
 					<div class="complete-box mt-2">
-						<div class="d-flex justify-content-between">
-							<div>사용자1</div>
-							<div>
-								<button type="button" class="btn btn-primary btn-sm mr-2">성공</button>
-								<button type="button" class="btn btn-light btn-sm">실패</button>
+						<c:forEach var="group" items="${groupList }">
+							<div class="d-flex justify-content-between mt-2">
+								<div>${group.userLoginId }</div>
+								<div>
+									<button type="button" class="btn btn-primary btn-sm mr-2 success-btn" id="completedInput" data-member-id="${group.completed}">성공</button>
+									<button type="button" class="btn btn-light btn-sm false-btn">실패</button>
+								</div>
 							</div>
-						</div>
-					
+						</c:forEach>
 					</div>
 				</div>
 				
@@ -110,8 +112,6 @@
 		$(".post-btn").on("click", function() {
 			
 			let id = $(this).data("group-id");
-			
-			alert(id);
 
 			let contents = $("#contentsInput").val();
 			let file = $("#fileInput")[0].files[0]; 
@@ -150,6 +150,46 @@
 				}
 			});
 			
+		});
+
+		
+		$(".success-btn").on("click", function() {
+			
+// 			let completed = $("#completedInput").val();
+		 	let id = $(this).data("member-id");
+		 	let completed = Boolean($("#completedInput").val());
+
+// 			let completedStr = $("#completedInput").val();
+// 			let completedValue;
+
+// 			if (completedStr === "true") {
+// 				completedValue = 1;
+// 			} else if (completedStr === "false") {
+// 				completedValue = 0;
+// 			} else {
+// 				console.error("잘못된 completed 값:", completedStr);
+// 				return; 
+// 			}
+
+			$.ajax({
+				type : "put",
+				url : "/group/validate",
+				data : {
+					"id" : id,
+					"completed" : completed
+				},
+				success : function(data) {
+					if (data.result == "success") {
+						alert("성공");
+						// location.reload();
+					} else {
+						alert("인증 실패");
+					}
+				},
+				error : function() {
+					alert("인증 에러");
+				}
+			});
 		});
 	});
 </script>
