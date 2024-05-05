@@ -1,5 +1,6 @@
 package com.ham.habit.common;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -31,7 +32,7 @@ public class FileManager {
 		}
 		
 		// 파일 저장
-		String filePath = directoryPath + "/" + file.getOriginalFilename(); // 실제 파일이름 가져옴
+		String filePath = directoryPath + "/" + file.getOriginalFilename();
 		
 		try {
 			byte[] bytes = file.getBytes();
@@ -49,6 +50,5 @@ public class FileManager {
 		return "/images" + directoryName + "/" + file.getOriginalFilename();
 		
 	}
-	
 	
 }

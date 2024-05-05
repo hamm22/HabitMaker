@@ -51,17 +51,20 @@
 					</div>
 				</div>
 				</c:forEach>
-
+				
+				<c:forEach var="post" items="${postList }">
 				<div class="post-card">
 					<div class="post-card-list">
-						<div class="mt-3">사용자아이디</div>
-						<div>
-							<img class="post-image" alt="고양이"
-								src="https://cdn.pixabay.com/photo/2023/08/18/15/02/cat-8198720_1280.jpg">
+						<div class="mt-3">${post.userLoginId }</div>
+						<div class="post-image">
+							<img src="${post.imagePath }" id="contnentImage">
 						</div>
-						<div class="post-card-contents mt-2">내용</div>
+						<div class="post-card-contents mt-2">
+							${post.contents }
+						</div>
 					</div>
 				</div>
+				</c:forEach>
 
 			</div>
 			
@@ -109,7 +112,6 @@
 			let id = $(this).data("group-id");
 			
 			alert(id);
-			
 
 			let contents = $("#contentsInput").val();
 			let file = $("#fileInput")[0].files[0]; 
@@ -130,24 +132,24 @@
 			formData.append("groupId", id);
 
 			$.ajax({
-				type : "post",
-				url : "/post/create",
-				data : formData,
-				enctype : "multipart/form-data",
-				processData : false,
-				contentType : false,
-				success : function(data) {
-					if (data.result == "success") {
+				type:"post"
+				, url:"/post/create"
+				, data:formData 
+				, enctype:"multipart/form-data" 
+				, processData: false			
+				, contentType: false			
+				, success:function(data) {
+					if(data.result == "success") {
 						location.reload();
 					} else {
 						alert("게시글 작성 실패");
 					}
-				},
-				error : function() {
+				}
+				, error:function() {
 					alert("게시글 작성 에러");
 				}
 			});
-
+			
 		});
 	});
 </script>

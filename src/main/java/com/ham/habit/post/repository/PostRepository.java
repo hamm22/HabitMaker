@@ -10,8 +10,6 @@ import com.ham.habit.post.domain.Post;
 @Mapper
 public interface PostRepository {
 	
-//	public List<Post> selectPostList(@Param("userId") int userId);
-	
 	public int insertPost(@Param("groupId") int groupId
 							, @Param("userId") int userId
 							,@Param("contents") String contents
@@ -19,4 +17,5 @@ public interface PostRepository {
 	
 	public List<Post> selectPostList (@Param("groupId") int groupId
 										, @Param("userId") int userId);
+	
 }

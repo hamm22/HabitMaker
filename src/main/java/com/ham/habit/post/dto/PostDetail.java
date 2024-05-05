@@ -9,6 +9,8 @@ public class PostDetail {
 	
 	private int id;
 	private String contents;
+	private int groupId;
+	private String imagePath;
 	
 	private int userId;
 	private String userLoginId;
@@ -51,6 +53,18 @@ public class PostDetail {
 	}
 	public void setGroupList(List<GroupDetail> groupList) {
 		this.groupList = groupList;
+	}
+	public int getGroupId() {
+		return groupId;
+	}
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
+	}
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 	
 }

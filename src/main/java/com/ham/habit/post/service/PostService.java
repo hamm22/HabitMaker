@@ -1,5 +1,6 @@
 package com.ham.habit.post.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ham.habit.common.FileManager;
 import com.ham.habit.post.domain.Post;
+import com.ham.habit.post.dto.PostDetail;
 import com.ham.habit.post.repository.PostRepository;
+import com.ham.habit.user.domain.User;
+import com.ham.habit.user.service.UserService;
 
 @Service
 public class PostService {
@@ -16,19 +20,35 @@ public class PostService {
 	@Autowired
 	private PostRepository postRepository;
 	
-//	public List<Post> getPostList(int userId){
-//		return postRepository.selectPostList(userId);
-//	}
+	@Autowired
+	private UserService userService;
 	
 	public int addPost(int groupId, int userId, String contents, MultipartFile imageFile) {
+		
 		String imagePath = FileManager.saveFile(userId, imageFile);
 		
 		return postRepository.insertPost(groupId, userId, contents, imagePath);
 	}
 	
-	public List<Post> getPost(int loginUserId, int groupId){
-		List<Post> postList = postRepository.selectPostList(loginUserId, groupId);
-		return postList;
+	public List<PostDetail> getPostList(int groupId, int loginUserId){
+		List<Post> postList = postRepository.selectPostList(groupId, loginUserId);
+		
+		List<PostDetail> postDetailList = new ArrayList<>();
+		
+		for(Post post:postList) {
+			User user = userService.getUser(post.getUserId());
+			
+			PostDetail postDetail = new PostDetail();
+			
+			postDetail.setId(post.getId());
+			postDetail.setGroupId(post.getGroupId());
+			postDetail.setContents(post.getContents());
+			postDetail.setImagePath(post.getImagePath());
+			postDetail.setUserId(post.getUserId());
+			postDetail.setUserLoginId(user.getLoginId());
+			postDetailList.add(postDetail);
+		}
+		return postDetailList;
 	}
-
+	
 }
