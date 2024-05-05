@@ -24,7 +24,7 @@
 
 				<div class="post-group">
 					<i class="bi bi-arrow-left-short" onclick="list()"></i>
-					 <input type="hidden" name="groupId" value="${groupId}">
+					<c:forEach var="group" items="${groupList}">
 						<c:if test="${param.groupId == group.id}"><!-- 가입한 그룹만 조회 -->
 							<div class="post-group-box">
 								<h5 class="group-name">${group.name}</h5>
