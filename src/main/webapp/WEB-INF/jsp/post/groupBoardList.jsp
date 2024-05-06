@@ -12,8 +12,7 @@
 <link rel="stylesheet" href="/static/css/boardStyle.css" type="text/css">
 </head>
 <body>
-
-	<div id="wrap">
+<div id="wrap">
 		<section class="d-flex">
 	
 			<!--메뉴바 -->
@@ -79,7 +78,7 @@
 							<div class="d-flex justify-content-between mt-2">
 								<div>${group.userLoginId }</div>
 								<div>
-									<button type="button" class="btn btn-primary btn-sm mr-2 success-btn" id="completedInput" data-member-id="${group.completed}">성공</button>
+									<button type="button" class="btn btn-primary btn-sm mr-2 success-btn" id="completedInput" data-group-id="${group.completed}">성공</button>
 									<button type="button" class="btn btn-light btn-sm false-btn">실패</button>
 								</div>
 							</div>
@@ -92,7 +91,7 @@
 					<h2 class="text-center mt-3">80%</h2>
 				</div>
 					<c:forEach var="member" items="${memberList }">
-						<c:if test="${userId eq member.userId}">
+						<c:if test="${param.groupId eq member.groupId}">
 							<button type="button" class="btn btn-secondary" id="delete-btn" data-member-id="${member.id }">그룹 탈퇴하기</button>
 						</c:if>
 					</c:forEach>
@@ -108,10 +107,36 @@
 	function list() {
 		  window.location.href = "/group/list-view";
 		}
-
 	
 	$(document).ready(function() {
+		
+		$(".success-btn").on("click", function() {
+			
+			let completed = true;
+		 	let id = $(this).data("group-id");
+		 	alert(id);
 
+			$.ajax({
+				type : "put",
+				url : "/group/validate",
+				data : {
+					"id" : id,
+					"completed" : completed
+				},
+				success : function(data) {
+					if (data.result == "success") {
+						alert("성공");
+						// location.reload();
+					} else {
+						alert("인증 실패");
+					}
+				},
+				error : function() {
+					alert("인증 에러");
+				}
+			});
+		});
+		
 		
 		// 그룹 탈퇴
 		$("#delete-btn").on("click", function() {
@@ -180,46 +205,6 @@
 				}
 			});
 			
-		});
-
-		
-		$(".success-btn").on("click", function() {
-			
-// 			let completed = $("#completedInput").val();
-		 	let id = $(this).data("member.id");
-		 	let completed = Boolean($("#completedInput").val());
-
-// 			let completedStr = $("#completedInput").val();
-// 			let completedValue;
-
-// 			if (completedStr === "true") {
-// 				completedValue = 1;
-// 			} else if (completedStr === "false") {
-// 				completedValue = 0;
-// 			} else {
-// 				console.error("잘못된 completed 값:", completedStr);
-// 				return; 
-// 			}
-
-			$.ajax({
-				type : "put",
-				url : "/group/validate",
-				data : {
-					"id" : id,
-					"completed" : completed
-				},
-				success : function(data) {
-					if (data.result == "success") {
-						alert("성공");
-						// location.reload();
-					} else {
-						alert("인증 실패");
-					}
-				},
-				error : function() {
-					alert("인증 에러");
-				}
-			});
 		});
 		
 	});
