@@ -33,7 +33,6 @@
 									<div class="mt-3 group-description">설명 : ${group.description}</div>
 								</div>
 							</div>
-<%-- 						</c:if> --%>
 					
 				</div>
 
