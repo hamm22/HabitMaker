@@ -68,7 +68,6 @@ public class MemberService {
 			groupDetail.setUserId(group.getUserId());
 			groupDetail.setUserLoginId(user.getLoginId());
 			
-			
 			groupDetail.setCompleted(member.getCompleted());
 			
 			groupDetailList.add(groupDetail);
@@ -85,5 +84,9 @@ public class MemberService {
 		return memberRepository.updateCompleted(id, completed);
 	}
 	
+	// 그룹 탈퇴
+	public int deleteMember(int userId, int id) {
+		return memberRepository.deleteMember(id);
+	}
 	
 }

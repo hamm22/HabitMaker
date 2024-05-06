@@ -1,6 +1,5 @@
 package com.ham.habit.post;
 
-import java.lang.reflect.Member;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ham.habit.group.dto.GroupDetail;
 import com.ham.habit.member.service.MemberService;
+import com.ham.habit.post.domain.Post;
 import com.ham.habit.post.dto.PostDetail;
 import com.ham.habit.post.service.PostService;
 
@@ -39,7 +39,7 @@ public class PostController {
 		
 		int userId = (Integer)session.getAttribute("userId");
 		
-		List<PostDetail> postList = postService.getPostList(groupId, userId);
+		List<PostDetail> postList = postService.getPostList(groupId);
 		
 		List<GroupDetail> groupList = memberService.getMemberList(userId);
 		

@@ -23,4 +23,7 @@ public interface MemberRepository {
 								, @Param("completed") Boolean completed);
 	
 	public List<Member> selectMember(@Param("userId") int userId);
+	
+	// 그룹 탈퇴
+	public int deleteMember(@Param("id") int id);
 }

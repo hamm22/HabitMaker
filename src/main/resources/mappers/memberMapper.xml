@@ -75,5 +75,12 @@
 		ORDER BY
 			`id` DESC;
 	</select>
+	
+	<delete id="deleteMember" parameterType="int">
+		DELETE FROM
+			`group_members`
+		WHERE
+			`id` = #{id}
+	</delete>
 
 </mapper>	

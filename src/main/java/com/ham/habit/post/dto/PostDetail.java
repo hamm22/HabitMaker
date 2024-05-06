@@ -2,7 +2,6 @@ package com.ham.habit.post.dto;
 
 import java.util.List;
 
-import com.ham.habit.group.dto.GroupDetail;
 import com.ham.habit.member.dto.MemberDetail;
 
 public class PostDetail {
@@ -10,13 +9,13 @@ public class PostDetail {
 	private int id;
 	private String contents;
 	private int groupId;
+	
 	private String imagePath;
 	
 	private int userId;
 	private String userLoginId;
 	
 	private List<MemberDetail> memberList;
-	private List<GroupDetail> groupList;
 	
 	public int getId() {
 		return id;
@@ -47,12 +46,6 @@ public class PostDetail {
 	}
 	public void setMemberList(List<MemberDetail> memberList) {
 		this.memberList = memberList;
-	}
-	public List<GroupDetail> getGroupList() {
-		return groupList;
-	}
-	public void setGroupList(List<GroupDetail> groupList) {
-		this.groupList = groupList;
 	}
 	public int getGroupId() {
 		return groupId;

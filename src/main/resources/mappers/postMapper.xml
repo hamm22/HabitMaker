@@ -35,8 +35,7 @@
  		FROM
  			`post`
  		WHERE
-			`userId` = #{userId}
-			AND `groupId`= #{groupId}		
+			 `groupId`= #{groupId}		
  		ORDER BY
 			`id` DESC
  	</select>

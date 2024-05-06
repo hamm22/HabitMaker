@@ -53,17 +53,17 @@
 				</c:forEach>
 				
 				<c:forEach var="post" items="${postList }">
-				<div class="post-card">
-					<div class="post-card-list">
-						<div class="mt-3">${post.userLoginId }</div>
-						<div class="post-image">
-							<img src="${post.imagePath }" id="contnentImage">
-						</div>
-						<div class="post-card-contents mt-2">
-							${post.contents }
+					<div class="post-card">
+						<div class="post-card-list">
+							<div class="mt-3">${post.userLoginId }</div>
+							<div class="post-image">
+								<img src="${post.imagePath }" id="contnentImage">
+							</div>
+							<div class="post-card-contents mt-2">
+								${post.contents }
+							</div>
 						</div>
 					</div>
-				</div>
 				</c:forEach>
 
 			</div>
@@ -91,8 +91,11 @@
 					<h5>오늘의 달성도</h5>
 					<h2 class="text-center mt-3">80%</h2>
 				</div>
-				
-				<button type="button" class="btn btn-secondary">그룹 탈퇴하기</button>
+					<c:forEach var="member" items="${memberList }">
+						<c:if test="${userId eq member.userId}">
+							<button type="button" class="btn btn-secondary" id="delete-btn" data-member-id="${member.id }">그룹 탈퇴하기</button>
+						</c:if>
+					</c:forEach>
 			</div>
 		</section>
 	</div>
@@ -106,8 +109,36 @@
 		  window.location.href = "/group/list-view";
 		}
 
+	
 	$(document).ready(function() {
 
+		
+		// 그룹 탈퇴
+		$("#delete-btn").on("click", function() {
+		 	
+			let id = $(this).data("member-id");
+
+			alert(id);
+			$.ajax({
+				type : "delete",
+				url : "/group/delete",
+				data : {"id" : id},
+				success : function(data) {
+					if (data.result == "success") {
+						alert("성공");
+						location.href="/group/list-view";
+					} else {
+						alert("탈퇴 실패");
+					}
+				},
+				error : function() {
+					alert("탈퇴 에러");
+				}
+			});
+		});
+		
+		
+		// 게시하기
 		$(".post-btn").on("click", function() {
 			
 			let id = $(this).data("group-id");
@@ -155,7 +186,7 @@
 		$(".success-btn").on("click", function() {
 			
 // 			let completed = $("#completedInput").val();
-		 	let id = $(this).data("member-id");
+		 	let id = $(this).data("member.id");
 		 	let completed = Boolean($("#completedInput").val());
 
 // 			let completedStr = $("#completedInput").val();
@@ -190,6 +221,7 @@
 				}
 			});
 		});
+		
 	});
 </script>
 </body>
