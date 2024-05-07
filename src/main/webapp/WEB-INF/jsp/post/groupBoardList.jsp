@@ -74,14 +74,16 @@
 				<div>
 				<div class="mt-3">오늘 그룹의 완성도</div>
 					<div class="complete-box mt-2">
-						<c:forEach var="group" items="${groupList }">
-							<div class="d-flex justify-content-between mt-2">
-								<div>${group.userLoginId }</div>
-								<div>
-									<button type="button" class="btn btn-primary btn-sm mr-2 success-btn" id="completedInput" data-group-id="${group.completed}">성공</button>
-									<button type="button" class="btn btn-light btn-sm false-btn">실패</button>
+						<c:forEach var="member" items="${memberList }">
+							<c:if test="${userLoginId eq member.userLoginId}">
+								<div class="d-flex justify-content-between mt-2">
+									<div>${member.userLoginId}</div>
+									<div class="btn-box" data-member-group-id="${member.groupId}"> 
+										<button type="button" class="btn btn-primary btn-sm mr-2 success-btn" id="completedInput" data-member-id="${member.id}">성공</button>
+										<button type="button" class="btn btn-light btn-sm false-btn">실패</button>
+									</div>
 								</div>
-							</div>
+							</c:if>
 						</c:forEach>
 					</div>
 				</div>
@@ -103,6 +105,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 <script type="text/javascript">
+	
 	// 페이지 이동
 	function list() {
 		  window.location.href = "/group/list-view";
@@ -113,14 +116,17 @@
 		$(".success-btn").on("click", function() {
 			
 			let completed = true;
-		 	let id = $(this).data("group-id");
-		 	alert(id);
+		 	let id = $(this).data("member-id");
+		 	let groupId = $(".btn-box").data("member-group-id");
+		 	
+		 	alert(groupId);
 
 			$.ajax({
 				type : "put",
 				url : "/group/validate",
 				data : {
 					"id" : id,
+					"groupId" : groupId,
 					"completed" : completed
 				},
 				success : function(data) {

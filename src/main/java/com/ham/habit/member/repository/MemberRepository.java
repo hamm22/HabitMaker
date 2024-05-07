@@ -21,9 +21,10 @@ public interface MemberRepository {
 	
 	// 성공 여부
 	public int updateCompleted(@Param("id")int id
+								, @Param("groupId") int groupId
 								, @Param("completed") Boolean completed);
 	
-	public List<Member> selectMember(@Param("userId") int userId);
+	public List<Member> selectMember(@Param("groupId") int groupId);
 	
 	// 그룹 탈퇴
 	public int deleteMember(@Param("id") int id);

@@ -45,9 +45,10 @@ public class MemberRestController {
 	// 그룹 완성도 인증
 	@PutMapping("/validate")
 	public Map<String, String> updateCompleted(@RequestParam("id") int id
+												, @RequestParam("groupId") int groupId
 												, @RequestParam("completed") Boolean completed){
 		
-		int count = memberService.updateCompleted(id, completed);
+		int count = memberService.updateCompleted(id, groupId, completed);
 		
 		Map<String, String> resultMap = new HashMap<>();
 

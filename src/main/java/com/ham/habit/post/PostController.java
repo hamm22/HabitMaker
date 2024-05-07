@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ham.habit.group.dto.GroupDetail;
+import com.ham.habit.member.domain.Member;
+import com.ham.habit.member.dto.MemberDetail;
 import com.ham.habit.member.service.MemberService;
-import com.ham.habit.post.domain.Post;
 import com.ham.habit.post.dto.PostDetail;
 import com.ham.habit.post.service.PostService;
 
@@ -43,7 +44,7 @@ public class PostController {
 		
 		List<GroupDetail> groupList = memberService.getMemberList(userId);
 		
-		List<com.ham.habit.member.domain.Member> memberList = memberService.getMemberListbyCompleted(userId);
+		List<MemberDetail> memberList = memberService.getMemberListbyCompleted(groupId);
 		
 		
 		model.addAttribute("postList", postList);

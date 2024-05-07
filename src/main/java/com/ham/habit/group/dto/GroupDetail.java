@@ -9,7 +9,6 @@ public class GroupDetail {
 	
 	//멤버
 	private boolean completed;
-	private int memberId;
 	
 	private int userId;
 	private String userLoginId;
@@ -55,14 +54,6 @@ public class GroupDetail {
 	public void setUserLoginId(String userLoginId) {
 		this.userLoginId = userLoginId;
 	}
-	public int getMemberId() {
-		return memberId;
-	}
-	public void setMemberId(int memberId) {
-		this.memberId = memberId;
-	}
-	
-	
 
 	
 }

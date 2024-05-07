@@ -43,7 +43,7 @@ public class GroupController {
 	
 	@GetMapping("/list-view")
 	public String groupList(Model model
-			, HttpSession session) {
+							, HttpSession session) {
 		
 		int userId = (Integer)session.getAttribute("userId");
 		

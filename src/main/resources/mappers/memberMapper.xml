@@ -49,15 +49,6 @@
 		ORDER BY
 			`id` DESC;
 	</select>
-
-	<update id="updateCompleted" parameterType="map">
-		UPDATE
-			`group_members`
-		SET
-			`completed` = #{completed}
-			, `updatedAt` = now()
-		WHERE `id` = #{id}
-	</update>
 	
 	<select id="selectMember" parameterType="int"
 		resultType="com.ham.habit.member.domain.Member">
@@ -71,10 +62,20 @@
 		FROM
 			`group_members`
 		WHERE
-			`userId` = #{userId}	
+			`groupId` = #{groupId}	
 		ORDER BY
 			`id` DESC;
 	</select>
+	
+	<update id="updateCompleted" parameterType="map">
+		UPDATE
+			`group_members`
+		SET
+			`completed` = #{completed}
+			, `updatedAt` = now()
+		WHERE `id` = #{id}
+				AND `groupId` = #{groupId}
+	</update>
 	
 	<delete id="deleteMember" parameterType="int">
 		DELETE FROM

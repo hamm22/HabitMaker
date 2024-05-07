@@ -10,6 +10,7 @@ import com.ham.habit.group.domain.Group;
 import com.ham.habit.group.dto.GroupDetail;
 import com.ham.habit.group.service.GroupService;
 import com.ham.habit.member.domain.Member;
+import com.ham.habit.member.dto.MemberDetail;
 import com.ham.habit.member.repository.MemberRepository;
 import com.ham.habit.user.domain.User;
 import com.ham.habit.user.service.UserService;
@@ -68,21 +69,39 @@ public class MemberService {
 			groupDetail.setUserId(group.getUserId());
 			groupDetail.setUserLoginId(user.getLoginId());
 			
-			groupDetail.setCompleted(member.getCompleted());
-			
 			groupDetailList.add(groupDetail);
 		
 		}
 		return groupDetailList;
 	}
 	
+//	groupDetail.setCompleted(member.getCompleted());
+	
 	// 성공 여부
-	public List<Member> getMemberListbyCompleted(int userId){
-		return memberRepository.selectMember(userId);
+	public List<MemberDetail> getMemberListbyCompleted(int groupId){
+		
+		List<Member> memberList = memberRepository.selectMember(groupId);
+		
+		List<MemberDetail> memberDetailList = new ArrayList<>();
+		
+		for(Member member:memberList) {
+			
+			User user = userService.getUser(member.getUserId());
+			
+			MemberDetail memberDetail = new MemberDetail();
+			memberDetail.setId(member.getId());
+			memberDetail.setGroupId(member.getGroupId());
+			memberDetail.setUserId(member.getUserId());
+			memberDetail.setCompleted(member.getCompleted());
+			memberDetail.setUserLoginId(user.getLoginId());
+			memberDetailList.add(memberDetail);
+		}
+		return memberDetailList;
+	
 	}
 	
-	public int updateCompleted(int id, Boolean completed) {
-		return memberRepository.updateCompleted(id, completed);
+	public int updateCompleted(int id, int groupId, Boolean completed) {
+		return memberRepository.updateCompleted(id, groupId, completed);
 	}
 	
 	// 그룹 탈퇴
