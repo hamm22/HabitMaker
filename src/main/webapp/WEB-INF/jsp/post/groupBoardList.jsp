@@ -70,23 +70,25 @@
 			<!-- /메인 -->
 			
 			<div class="right-box text-center">
-			
 				<div>
+				<div id="dueDate"> ${param.dueDate }</div>
 				<div class="mt-3">오늘 그룹의 완성도</div>
 					<div class="complete-box mt-2">
-						<c:forEach var="member" items="${memberList }">
-							<c:if test="${userLoginId eq member.userLoginId}">
+						<c:forEach var="groupTodo" items="${groupTodoList }">
+							<c:if test="${userLoginId eq groupTodo.userLoginId}">
 								<div class="d-flex justify-content-between mt-2">
-									<div>${member.userLoginId}</div>
-									<div class="btn-box" data-member-group-id="${member.groupId}"> 
-										<button type="button" class="btn btn-primary btn-sm mr-2 success-btn" id="completedInput" data-member-id="${member.id}">성공</button>
-										<button type="button" class="btn btn-light btn-sm false-btn">실패</button>
+									<div>${groupTodo.userLoginId}</div>
+									<div class="btn-box" data-todo-group-id="${groupTodo.groupId}"> 
+										<button type="button" class="btn btn-primary btn-sm mr-2 success-btn" data-todo-id="${groupTodo.id}">성공</button>
+										<button type="button" class="btn btn-light btn-sm fail-btn" data-todo-id="${groupTodo.id}">실패</button>
 									</div>
 								</div>
 							</c:if>
 						</c:forEach>
 					</div>
 				</div>
+				
+				
 				
 				<div class="goal mt-5">
 					<h5>오늘의 달성도</h5>
@@ -106,6 +108,16 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	
+	// 현재 날짜 가쟈오기
+	var today = new Date();
+	
+	var year = today.getFullYear();
+	var month = ('0' + (today.getMonth() + 1)).slice(-2);
+	var day = ('0' + today.getDate()).slice(-2);
+	
+	var dateString = year + '-' + month  + '-' + day;
+	
+	
 	// 페이지 이동
 	function list() {
 		  window.location.href = "/group/list-view";
@@ -113,20 +125,24 @@
 	
 	$(document).ready(function() {
 		
+		// 날짜
+		$("#dueDate").text(dateString);
+		
+		
 		$(".success-btn").on("click", function() {
 			
 			let completed = true;
-		 	let id = $(this).data("member-id");
-		 	let groupId = $(".btn-box").data("member-group-id");
+		 	let id = $(this).data("todo-id");
+		 	let groupId = $(".btn-box").data("todo-group-id");
+		 	let dueDate = dateString;
 		 	
-		 	alert(groupId);
-
 			$.ajax({
 				type : "put",
-				url : "/group/validate",
+				url : "/group/todo/validate",
 				data : {
 					"id" : id,
 					"groupId" : groupId,
+					"dueDate" : dueDate,
 					"completed" : completed
 				},
 				success : function(data) {
@@ -144,6 +160,42 @@
 		});
 		
 		
+		$(".fail-btn").on("click", function() {
+			
+		 	let id = $(this).data("todo-id");
+		 	let groupId = $(".btn-box").data("todo-group-id");
+		 	let dueDate = dateString;
+		 	
+			$.ajax({
+				type : "put",
+				url : "/group/todo/validate",
+				data : {
+					"id" : id,
+					"groupId" : groupId,
+					"dueDate" : dueDate,
+					"completed" : false
+				},
+				success : function(data) {
+					if (data.result == "success") {
+						alert("실패버튼 성공");
+						// location.reload();
+					} else {
+						alert("실패버튼 인증 실패");
+					}
+				},
+				error : function() {
+					alert("실패버튼 인증 에러");
+				}
+			});
+		});
+		
+		
+		
+		
+		
+		
+		
+		
 		// 그룹 탈퇴
 		$("#delete-btn").on("click", function() {
 		 	
@@ -152,7 +204,7 @@
 			alert(id);
 			$.ajax({
 				type : "delete",
-				url : "/group/delete",
+				url : "/group/todo/delete",
 				data : {"id" : id},
 				success : function(data) {
 					if (data.result == "success") {
@@ -167,8 +219,7 @@
 				}
 			});
 		});
-		
-		
+
 		// 게시하기
 		$(".post-btn").on("click", function() {
 			

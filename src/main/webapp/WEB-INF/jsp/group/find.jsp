@@ -146,6 +146,7 @@
 			autoSlider = setInterval(slideRight, 3000);
 		});
 		
+		
 		// 그룹가입 버튼
 		$(".group-join-btn").on("click", function() {
 			
@@ -166,6 +167,28 @@
 				}
 				, error:function() {
 					alert("그룹가입 에러");
+				}
+			});
+		});
+		
+		// 그룹 가입 - 그룹 투두
+		$(".group-join-btn").on("click", function() {
+			
+			let id = $(this).data("group-id");
+					
+			$.ajax({
+				type:"post"
+				, url:"/group/todo/create"
+				, data:{"groupId":id}
+				, success:function(data) {
+					if(data.result == "success") {
+// 						alert("그룹투두 가입 성공");
+					} else {
+// 						alert("이미 가입한 투두 그룹입니다!");
+					}
+				}
+				, error:function() {
+					alert("그룹가입 투두 에러");
 				}
 			});
 		});

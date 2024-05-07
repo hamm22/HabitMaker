@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ham.habit.group.dto.GroupDetail;
-import com.ham.habit.member.domain.Member;
+import com.ham.habit.groupTodo.domain.GroupTodo;
+import com.ham.habit.groupTodo.dto.GroupTodoDetail;
+import com.ham.habit.groupTodo.service.GroupTodoService;
 import com.ham.habit.member.dto.MemberDetail;
 import com.ham.habit.member.service.MemberService;
 import com.ham.habit.post.dto.PostDetail;
@@ -27,6 +29,9 @@ public class PostController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private GroupTodoService groupTodoService;
 	
 	@GetMapping("/create-view")
 	public String inputGroupBoard() {
@@ -46,10 +51,13 @@ public class PostController {
 		
 		List<MemberDetail> memberList = memberService.getMemberListbyCompleted(groupId);
 		
+		List<GroupTodoDetail> groupTodoList = groupTodoService.getGroupTodo(groupId);
+		
 		
 		model.addAttribute("postList", postList);
 		model.addAttribute("groupList", groupList);
 		model.addAttribute("memberList", memberList);
+		model.addAttribute("groupTodoList", groupTodoList);
 		
 		return "post/groupBoardList";
 	}

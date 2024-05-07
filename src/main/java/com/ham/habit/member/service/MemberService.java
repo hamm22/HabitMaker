@@ -75,8 +75,6 @@ public class MemberService {
 		return groupDetailList;
 	}
 	
-//	groupDetail.setCompleted(member.getCompleted());
-	
 	// 성공 여부
 	public List<MemberDetail> getMemberListbyCompleted(int groupId){
 		

@@ -3,23 +3,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="com.ham.habit.member.repository.MemberRepository">
- 
-	<insert id="insertMember" parameterType="map">
+<mapper namespace="com.ham.habit.groupTodo.repository.GroupTodoRepository">
+	
+	<insert id="insertGroupTodo" parameterType="map">
 		INSERT INTO
-			`group_members`
+			`group_todo`
 			(
 				`groupId`
 				, `userId`
+				, `dueDate`
 				, `completed`
 			)
 		VALUE 
 			(
 				#{groupId}
 				, #{userId}
+				, #{dueDate}
 				, #{completed}
 			)
-			
 	</insert>
 	
 	<select id="countByGroupIdAndUserId"  parameterType="map"
@@ -27,40 +28,24 @@
 		SELECT
 			count(*)
 		FROM
-			`group_members`
+			`group_todo`
 		WHERE
 			`groupId` = #{groupId}
 			AND `userId` = #{userId}
 	</select>
 	
-	<select id="selectMemberList"
-	resultType="com.ham.habit.member.domain.Member">
+	<select id="selectTodoList"
+	resultType="com.ham.habit.groupTodo.domain.GroupTodo">
 		SELECT
 			`id`
 			, `groupId`
 			, `userId`
+			, `dueDate`
 			, `completed`
 			, `createdAt`
 			, `updatedAt`
 		FROM
-			`group_members`
-		WHERE
-			`userId` = #{userId}	
-		ORDER BY
-			`id` DESC;
-	</select>
-	
-	<select id="selectMember" parameterType="int"
-	resultType="com.ham.habit.member.domain.Member">
-		SELECT
-			`id`
-			, `groupId`
-			, `userId`
-			, `completed`
-			, `createdAt`
-			, `updatedAt`
-		FROM
-			`group_members`
+			`group_todo`
 		WHERE
 			`groupId` = #{groupId}	
 		ORDER BY
@@ -69,19 +54,13 @@
 	
 	<update id="updateCompleted" parameterType="map">
 		UPDATE
-			`group_members`
+			`group_todo`
 		SET
 			`completed` = #{completed}
+			, `dueDate` = #{dueDate}
 			, `updatedAt` = now()
 		WHERE `id` = #{id}
 				AND `groupId` = #{groupId}
 	</update>
 	
-	<delete id="deleteMember" parameterType="int">
-		DELETE FROM
-			`group_members`
-		WHERE
-			`id` = #{id}
-	</delete>
-
-</mapper>	
+</mapper>
