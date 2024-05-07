@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.ham.habit.group.domain.Group;
 import com.ham.habit.group.dto.GroupDetail;
 import com.ham.habit.group.repository.GroupRepository;
+import com.ham.habit.member.domain.Member;
+import com.ham.habit.member.service.MemberService;
 import com.ham.habit.user.domain.User;
 import com.ham.habit.user.service.UserService;
 
@@ -35,6 +37,7 @@ public class GroupService {
 			// 사용자 정보
 			User user = userService.getUser(group.getUserId());
 			
+			
 			GroupDetail groupDetail = new GroupDetail();
 			groupDetail.setId(group.getId());
 			groupDetail.setName(group.getName());
@@ -42,6 +45,7 @@ public class GroupService {
 			groupDetail.setDescription(group.getDescription());
 			groupDetail.setUserId(group.getUserId());
 			groupDetail.setUserLoginId(user.getLoginId());
+			
 			groupDetailList.add(groupDetail);
 			}
 		return groupDetailList;

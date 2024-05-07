@@ -14,7 +14,7 @@ public class PostDetail {
 	
 	private int userId;
 	private String userLoginId;
-	
+
 	private List<MemberDetail> memberList;
 	
 	public int getId() {

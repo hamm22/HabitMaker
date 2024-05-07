@@ -19,6 +19,7 @@ public interface MemberRepository {
 	
 	public List<Member> selectMemberList(@Param("userId") int userId);
 	
+	// 성공 여부
 	public int updateCompleted(@Param("id")int id
 								, @Param("completed") Boolean completed);
 	

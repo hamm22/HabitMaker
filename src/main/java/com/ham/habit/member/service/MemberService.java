@@ -76,6 +76,7 @@ public class MemberService {
 		return groupDetailList;
 	}
 	
+	// 성공 여부
 	public List<Member> getMemberListbyCompleted(int userId){
 		return memberRepository.selectMember(userId);
 	}

@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ham.habit.common.FileManager;
-import com.ham.habit.group.dto.GroupDetail;
-import com.ham.habit.member.service.MemberService;
 import com.ham.habit.post.domain.Post;
 import com.ham.habit.post.dto.PostDetail;
 import com.ham.habit.post.repository.PostRepository;
@@ -24,9 +22,6 @@ public class PostService {
 	
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private MemberService memberService;
 
 	public int addPost(int groupId, int userId, String contents, MultipartFile imageFile) {
 		
@@ -42,9 +37,11 @@ public class PostService {
 		List<PostDetail> postDetailList = new ArrayList<>();
 		
 		for(Post post:postList) {
-			User user = userService.getUser(post.getUserId());
-			PostDetail postDetail = new PostDetail();
 			
+			// 사용자 정보
+			User user = userService.getUser(post.getUserId());
+			
+			PostDetail postDetail = new PostDetail();
 			postDetail.setId(post.getId());
 			postDetail.setGroupId(post.getGroupId());
 			postDetail.setContents(post.getContents());

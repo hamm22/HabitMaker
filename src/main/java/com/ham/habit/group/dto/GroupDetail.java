@@ -9,11 +9,10 @@ public class GroupDetail {
 	
 	//멤버
 	private boolean completed;
-	
+	private int memberId;
 	
 	private int userId;
 	private String userLoginId;
-	
 	public int getId() {
 		return id;
 	}
@@ -38,6 +37,12 @@ public class GroupDetail {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public boolean isCompleted() {
+		return completed;
+	}
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
+	}
 	public int getUserId() {
 		return userId;
 	}
@@ -50,12 +55,14 @@ public class GroupDetail {
 	public void setUserLoginId(String userLoginId) {
 		this.userLoginId = userLoginId;
 	}
-	public boolean isCompleted() {
-		return completed;
+	public int getMemberId() {
+		return memberId;
 	}
-	public void setCompleted(boolean completed) {
-		this.completed = completed;
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
 	}
+	
+	
 
 	
 }
