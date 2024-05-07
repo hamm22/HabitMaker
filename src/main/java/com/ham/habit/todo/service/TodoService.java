@@ -45,12 +45,7 @@ public class TodoService {
 	
 	// 설명
 	public int addDescription(int userId, String description){
-		return todoRepository.insertDescription(userId, description);
-	}
-	
-	// 설명 수정
-	public int updateDescription(int id, String description) {
-		return todoRepository.updateDescription(id, description);
+		return todoRepository.updateDescription(userId, description);
 	}
 
 }

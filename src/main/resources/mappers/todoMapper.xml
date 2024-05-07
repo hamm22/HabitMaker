@@ -47,20 +47,7 @@
 				, `updatedAt` = now()
 			WHERE `id` = #{id}
 	</update>
-	
-	<insert id="insertDescription" parameterType="map">
-		INSERT INTO
-		`todo`
-		(
-		 `userId`
-		 , `description`
-		)
-		VALUE
-		(
-			#{userId}
-		 , #{description}
-		)
-	</insert>
+
 	
 	<update id="updateDescription" parameterType="map">
 		UPDATE
@@ -69,9 +56,10 @@
 			`description` = #{description}
 			, `updatedAt` = now()
 		WHERE
-			`id` = #{id}
+			`userId` = #{userId}
 		
 	</update>
+	
 	
 	<delete id="deleteTodo" parameterType="int">
 		DELETE FROM

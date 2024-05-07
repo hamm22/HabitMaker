@@ -52,8 +52,7 @@
 						<textarea class="form-control mt-3" rows="7" id="descriptionInput">${todo.description}</textarea>
 						<c:set var="count" value="1" scope="page" />
 						<div class="btn-box mt-1">
-							<button type="button" class="btn btn-warning" id="descriptionUpdateBtn">수정</button>
-							<button type="button" class="btn btn-light mr-3" id="descriptionBtn">완료</button>
+							<button type="button" class="btn btn-warning mr-3" id="descriptionBtn">완료</button>
 						</div>
 					</c:if>
 				</c:forEach>
@@ -70,7 +69,7 @@
 <script type="text/javascript">
 
 // 	할일 생성
-// 	const plusIcon = document.querySelector('.bi.bi-plus-circle-fill');
+//  	const plusIcon = document.querySelector('.bi.bi-plus-circle-fill');
 // 	const todoList = document.querySelector('.todo');
 
 // 	plusIcon.addEventListener('click', () => {
@@ -160,13 +159,6 @@
 		});
 	});
 		
-		
-		
-		
-		
-		
-		
-		
 		// 설명 생성
 		$("#descriptionBtn").on("click", function(){
 			
@@ -177,10 +169,8 @@
 				return ;
 			}
 			
-			console.log(description);
-			
 			$.ajax({
-				type : "post"
+				type : "put"
 				, url: "/todo/description"
 				, data: {"description" : description}
 			, success:function(data) {
