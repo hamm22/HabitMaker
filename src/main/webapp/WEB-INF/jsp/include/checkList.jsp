@@ -19,47 +19,48 @@
 			<i class="bi bi-chevron-right"></i>
 		</div>
 
-		<div class="todoList mt-3">
-			<c:forEach var="todo" items="${todoList}">
-				<c:if test="${not empty todo.title}">
-					<div class="d-flex ml-2 mt-1">
-						<i class="bi bi-square check-icon" id="completedInput" data-todo-id="${todo.id}"></i>
-						<div class="ml-2">${todo.title}</div>
-						<i class="bi bi-three-dots ml-2" id="deleteBtn" data-todo-id="${todo.id}"></i>
-					</div>
-				</c:if>
-			</c:forEach>
-
-		</div>
-
 		<form id="todoForm">
 			<ul class="todo">
-				<div class="todo-box d-flex ml-2">
+				<div class="todo-box d-flex ml-2 mt-2">
 					<div class="new-todo-item">
-						<input type="checkbox"> <input type="text" placeholder="습관 입력" id="titleInput">
+						<input type="text" placeholder="습관 입력" id="titleInput">
 					</div>
-<!-- 					<i class="bi bi-three-dots ml-2"></i> -->
 				</div>
 			</ul>
 		</form>
 
-
-		<div class="content-box">
-			<c:set var="count" value="0" scope="page" />
+		<div class="todoList mt-3">
 			<c:forEach var="todo" items="${todoList}">
-				<%-- 					 <c:if test="${not empty todo.description}"> --%>
-				<c:if test="${count eq 0}">
-					<textarea class="form-control mt-3" rows="7"
-						id="descriptionInput contentBox" data-todo-id="${todo.id}">${todo.description}</textarea>
-					<c:set var="count" value="1" scope="page" />
-					<%-- 					</c:if> --%>
+				<c:if test="${not empty todo.title}">
+					<div class="d-flex ml-2 mt-1">
+						<i class="bi bi-square check-icon" id="completedInput"
+							data-todo-id="${todo.id}"></i>
+						<div class="ml-2">${todo.title}</div>
+						<i class="bi bi-three-dots ml-2" id="deleteBtn"
+							data-todo-id="${todo.id}"></i>
+					</div>
 				</c:if>
 			</c:forEach>
 		</div>
 
-		<button type="button" id="descriptionUpdateBtn">수정</button>
-		<button type="button" id="descriptionBtn">완료</button>
-		<i class="bi bi-plus-circle-fill"></i>
+<!-- 		설명 -->
+		<div class="content-box">
+			<c:set var="count" value="0" scope="page" />
+				<c:forEach var="todo" items="${todoList}">
+					<%-- 					 <c:if test="${not empty todo.description}"> --%>
+					<c:if test="${count eq 0}">
+						<textarea class="form-control mt-3" rows="7" id="descriptionInput">${todo.description}</textarea>
+						<c:set var="count" value="1" scope="page" />
+						<div class="btn-box mt-1">
+							<button type="button" class="btn btn-warning" id="descriptionUpdateBtn">수정</button>
+							<button type="button" class="btn btn-light mr-3" id="descriptionBtn">완료</button>
+						</div>
+					</c:if>
+				</c:forEach>
+	</div>
+
+	
+		<i class="bi bi-plus-circle-fill mt-5"></i>
 	</div>
 
 
@@ -159,15 +160,24 @@
 		});
 	});
 		
+		
+		
+		
+		
+		
+		
+		
 		// 설명 생성
 		$("#descriptionBtn").on("click", function(){
 			
 			let description = $("#descriptionInput").val();
-			
+
 			if(description == "") {
-				alert("할일을 입력하세요");
+				alert("설명 입력하세요");
 				return ;
 			}
+			
+			console.log(description);
 			
 			$.ajax({
 				type : "post"
@@ -184,6 +194,18 @@
 			}
 			});
 		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		// 설명 수정
 		$("#descriptionUpdateBtn").on("click", function(){

@@ -2,7 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-
 #wrap{
 /* 	width:1200px; */
 	margin:0 auto;
@@ -29,5 +28,9 @@
 	display : none;
 }
 
+.btn-box{
+	float: right;
+	margin-left: 120px;
+}
 
 
