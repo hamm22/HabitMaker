@@ -21,7 +21,7 @@
 
 		<form id="todoForm">
 			<ul class="todo">
-				<div class="todo-box d-flex ml-2 mt-2">
+				<div class="todo-box d-flex ml-2 mt-3">
 					<div class="new-todo-item">
 						<input type="text" placeholder="습관 입력" id="titleInput">
 					</div>
@@ -31,15 +31,19 @@
 
 		<div class="todoList mt-3">
 			<c:forEach var="todo" items="${todoList}">
-				<c:if test="${not empty todo.title}">
 					<div class="d-flex ml-2 mt-1">
-						<i class="bi bi-square check-icon" id="completedInput"
-							data-todo-id="${todo.id}"></i>
+					<c:choose>
+						<c:when test="${todo.completed}">
+						<i class="bi bi-check-square-fill check-icon" data-checked="true" data-todo-id="${todo.id}"></i>
+						</c:when>
+						<c:otherwise>
+						<i class="bi bi-square check-icon" data-checked="false" data-todo-id="${todo.id}"></i>
+						</c:otherwise>
+					</c:choose>	
+						
 						<div class="ml-2">${todo.title}</div>
-						<i class="bi bi-three-dots ml-2" id="deleteBtn"
-							data-todo-id="${todo.id}"></i>
+						<i class="bi bi-three-dots ml-2" id="deleteBtn" data-todo-id="${todo.id}"></i>
 					</div>
-				</c:if>
 			</c:forEach>
 		</div>
 
@@ -47,11 +51,10 @@
 		<div class="content-box">
 			<c:set var="count" value="0" scope="page" />
 				<c:forEach var="todo" items="${todoList}">
-					<%-- 					 <c:if test="${not empty todo.description}"> --%>
 					<c:if test="${count eq 0}">
-						<textarea class="form-control mt-3" rows="7" id="descriptionInput">${todo.description}</textarea>
-						<c:set var="count" value="1" scope="page" />
-						<div class="btn-box mt-1">
+						<textarea class="form-control mt-3 description-box" rows="7" id="descriptionInput" resize="vertical">${todo.description}</textarea>
+						<c:set var="count" value="1" scope="page"/>
+						<div class="btn-box mt-2">
 							<button type="button" class="btn btn-warning mr-3" id="descriptionBtn">완료</button>
 						</div>
 					</c:if>
@@ -128,19 +131,20 @@
 		 	let id = $(this).data("todo-id");
 			
 			let currentChecked = $(this).data("checked");
-			if(currentChecked) {
-				// 이벤트가 발생된 그 때 체크가 되어있다
-				$(this).data("checked", false);
-            	$(this).attr('class','bi bi-square check-icon');
-            	//체크 해제
-            	completed = false;
-			} else {
-				// 이벤트가 발생된 그 때 체크가 안되어 있다
-				$(this).data("checked", true);
-				$(this).attr('class','bi bi-check-square-fill check-icon');
-				// 체크
-				completed = true;
-			}
+				if(currentChecked) {
+					// 이벤트가 발생된 그 때 체크가 되어있다
+					$(this).data("checked", false);
+	            	$(this).attr('class','bi bi-square check-icon');
+	            	//체크 해제
+	            	completed = false;
+	            	
+				} else {
+					// 이벤트가 발생된 그 때 체크가 안되어 있다
+					$(this).data("checked", true);
+					$(this).attr('class','bi bi-check-square-fill check-icon');
+					// 체크
+					completed = true;
+				}
             
 			$.ajax({
 				type:"put"
@@ -181,45 +185,6 @@
 				}
 			} , error:function() {
 				alert("설명 작성 에러");
-			}
-			});
-		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		// 설명 수정
-		$("#descriptionUpdateBtn").on("click", function(){
-			
-			let description = $("#descriptionInput").val();
-			let id = $("#contentBox").data("todo-id");
-			
-			if(description == "") {
-				alert("할일을 입력하세요");
-				return ;
-			}
-			
-			$.ajax({
-				type : "put"
-				, url: "/todo/description-update"
-				, data: {"id": id, "description" : description}
-			, success:function(data) {
-				if (data.result == "success") {
-					location.reload();
-				} else {
-				alert("설명 수정 실패");
-				}
-			} , error:function() {
-				alert("설명 수정 에러");
 			}
 			});
 		});
