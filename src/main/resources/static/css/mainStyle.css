@@ -34,3 +34,8 @@
 }
 
 
+.description-box{
+	height: auto;
+	outline: none;
+	resize: none;
+}

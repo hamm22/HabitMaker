@@ -8,10 +8,19 @@
 	margin:0 auto;
 }
 
-h1 {
-  font-weight: bold;
-  margin: 0;
+.logo{
+	margin-top: 80px;
 }
+
+h1 {
+	margin: 0;
+	font-weight: bold;
+}
+
+
+
+
+
 
 *{padding:0;margin:0}
 li{list-style:none}
@@ -20,7 +29,7 @@ a{text-decoration:none;font-size:20px}
 .menu {
   width: 300px;
   overflow: hidden;
-  margin: 150px auto;
+  margin: 100px auto;
 }
 
 .menu > li {
@@ -48,6 +57,7 @@ a{text-decoration:none;font-size:20px}
 #logoutBtn{
 	width:250px;
 	height:40px;
+	margin-bottom: 30px;
 }
 
 .profile{

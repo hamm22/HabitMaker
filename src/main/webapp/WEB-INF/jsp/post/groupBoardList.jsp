@@ -89,11 +89,27 @@
 				</div>
 				
 				
-				
 				<div class="goal mt-5">
-					<h5>오늘의 달성도</h5>
-					<h2 class="text-center mt-3">80%</h2>
+					<h5>오늘의 팀원</h5>
+
+					<table class="table table-bordered border-warining">
+						<thead>
+							<tr>
+								<th scope="col">아이디</th>
+								<th scope="col">성공여부</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="groupTodo" items="${groupTodoList }">
+								<tr>
+									<th scope="row">${groupTodo.userLoginId }</th>
+									<td>${groupTodo.completed ? '성공' : '실패'}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
+		
 					<c:forEach var="member" items="${memberList }">
 						<c:if test="${param.groupId eq member.groupId}">
 							<button type="button" class="btn btn-secondary" id="delete-btn" data-member-id="${member.id }">그룹 탈퇴하기</button>
@@ -107,6 +123,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 <script type="text/javascript">
+	
 	
 	// 현재 날짜 가쟈오기
 	var today = new Date();
@@ -147,8 +164,7 @@
 				},
 				success : function(data) {
 					if (data.result == "success") {
-						alert("성공");
-						// location.reload();
+						location.reload();
 					} else {
 						alert("인증 실패");
 					}
@@ -177,8 +193,7 @@
 				},
 				success : function(data) {
 					if (data.result == "success") {
-						alert("실패버튼 성공");
-						// location.reload();
+						location.reload();
 					} else {
 						alert("실패버튼 인증 실패");
 					}
@@ -188,14 +203,7 @@
 				}
 			});
 		});
-		
-		
-		
-		
-		
-		
-		
-		
+
 		// 그룹 탈퇴
 		$("#delete-btn").on("click", function() {
 		 	
@@ -204,7 +212,7 @@
 			alert(id);
 			$.ajax({
 				type : "delete",
-				url : "/group/todo/delete",
+				url : "/group/delete",
 				data : {"id" : id},
 				success : function(data) {
 					if (data.result == "success") {

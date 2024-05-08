@@ -47,7 +47,7 @@
 		titleFormat : function(date) {
 			return date.date.year + '년 ' + (parseInt(date.date.month) + 1) + '월';
 		},
-		//initialDate: '2024-04-10', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
+		// 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
 		selectable : true, // 달력 일자 드래그 설정가능
 		droppable : true,
 		editable : true,

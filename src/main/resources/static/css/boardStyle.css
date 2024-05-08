@@ -118,9 +118,9 @@
 
 .goal{
 	margin-top: 20px;
-	padding: 50px;
+	padding: 20px;
 	width: 250px;
-	height: 200px;
+	height: 200 auto px;
 	background-color: #FFFFFF;
 	border-radius: 17px;
 	margin: 0 auto;

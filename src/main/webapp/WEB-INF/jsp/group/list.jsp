@@ -22,21 +22,21 @@
 			<div class="main-box">
 				<div class="join-box">
 					<h4 class="text-center"> ${userLoginId }님이 가입한 그룹</h4>
-
+					
 					<c:forEach var="group" items="${groupList}">
-					<div class="d-flex justify-content-between mt-5 group-room">
-						<div class="group-element">
-							<h4>${group.name}</h4>
-							<div class="leader">그룹장 : ${group.userLoginId}</div>
-							<div class="mt-2">목표 : ${group.title}</div>
-							<div class="mt-2">설명 : ${group.description}</div>
+						<div class="d-flex justify-content-between mt-5 group-room">
+								<div class="group-element">
+									<h4>${group.name}</h4>
+									<div class="leader">그룹장 : ${group.userLoginId}</div>
+									<div class="mt-2">목표 : ${group.title}</div>
+									<div class="mt-2">설명 : ${group.description}</div>
+								</div>
+								<div>
+									<a href="/post/groupboard-view?groupId=${group.id }"><button type="button" id="MoveBtn">페이지로 이동</button></a>
+								</div>
 						</div>
-						<div>
-							<a href="/post/groupboard-view?groupId=${group.id }"><button type="button" id="MoveBtn">페이지로 이동</button></a>
-						</div>
-					</div>
 					</c:forEach>
-
+						
 				</div>
 				
 			</div>

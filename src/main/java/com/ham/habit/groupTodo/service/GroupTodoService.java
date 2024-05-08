@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.ham.habit.groupTodo.domain.GroupTodo;
 import com.ham.habit.groupTodo.dto.GroupTodoDetail;
 import com.ham.habit.groupTodo.repository.GroupTodoRepository;
-import com.ham.habit.member.domain.Member;
 import com.ham.habit.user.domain.User;
 import com.ham.habit.user.service.UserService;
 
