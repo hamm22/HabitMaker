@@ -27,7 +27,7 @@
     background-repeat: no-repeat;
     background-position: 38% center;
     text-indent: 10%;
-    font-size: 20px;
+    font-size: 17px;
 }
 .input-search:focus {
     background-position: 4% center;
@@ -149,17 +149,18 @@ body, hmtl {
 /* 	font-family: 'Anton', sans-serif; */
 }
 
-#wrapper{
-  width:900px;
-  margin:50px auto;
-  height:270px;
-  position:relative;
-  color:#fff;
-  text-shadow:rgba(0,0,0,0.1) 2px 2px 0px;  
+#wrapper {
+	width: 1100px;
+	margin-top: 10px; margin-left : 20px; height : 270px;
+	position: relative;
+	color: #fff;
+	text-shadow: rgba(0, 0, 0, 0.1) 2px 2px 0px;
+	height: 270px;
+	margin-left: 20px;
 }
 
 #slider-wrap{
-  width:900px;
+  width:1100px;
   height:270px;
   position:relative;
   overflow:hidden;
@@ -177,7 +178,7 @@ body, hmtl {
 #slider-wrap ul#slider li{
   float:left;
   position:relative;
-  width:900px;
+  width:1100px;
   height:270px; 
 }
 
@@ -208,6 +209,7 @@ body, hmtl {
   z-index:100;
   
   
+  
   -webkit-user-select: none;  
   -moz-user-select: none; 
   -khtml-user-select: none; 
@@ -221,7 +223,7 @@ body, hmtl {
 }
 
 .btns:hover{
-  background:rgba(0,0,0,0.3); 
+  background:rgba(0,0,0,0.3);
 }
 
 #next{right:-50px; border-radius:7px 0px 0px 7px;}
@@ -280,7 +282,7 @@ body, hmtl {
 	-ms-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
 	transition: all 0.3s cubic-bezier(1, .01, .32, 1);
 }
-/* /그림 슬라이드 */
+/* 그림 슬라이드 */
 
 .group-main{
 	margin-left:50px;
@@ -289,16 +291,17 @@ body, hmtl {
 #CreateBtn{
 	width: 300px;
 	border-radius: 10px;
-	margin-right:50px;	
+	margin-right:50px;
+	font-size: 15px;	
 }
 
 .group-card{
 	margin-top: 20px;
 	margin-left:50px;
 	padding: 10px;
-	background-color: #EAEAEA;
+	background-color: #f1f3f5;
 	width: 300px;
-	height: 210px;
+	height: 220px;
 	border-radius: 10px;
 	font-size: 17px;
 }
@@ -306,4 +309,10 @@ body, hmtl {
 .group-join-btn{
 	border-radius: 10px;
 	float: right;
+	font-size: 14px;
+}
+
+.group-name{
+	font-size: 20px;
+	font-weight: semi-bold;
 }

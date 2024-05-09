@@ -73,7 +73,7 @@
 					</div>
 				</div>
 
-				<div class="group-main d-flex justify-content-between">
+				<div class="group-main d-flex justify-content-between mt-3">
 				<input id="searchInput" type="search" class="input-search" placeholder="검색">
 				<button type="button" id="CreateBtn" onclick="join()">그룹 새로 만들기</button>
 				</div>
@@ -82,8 +82,8 @@
 					<c:forEach var="group" items="${groupList }">
 <%-- 					<c:if test="${userLoginId ne group.userLoginId }"> <!-- 그룹장이면 화면에 안나옴 --> --%>
 					<div class="group-card mr-2">
-						<div>그룹명 : ${group.name }</div>
-						<div class="mt-2">그룹장 : ${group.userLoginId }</div>
+						<div class="group-name">${group.name }</div>
+						<div class="mt-3">그룹장 : ${group.userLoginId }</div>
 						<div class="mt-2">목표 : ${group.title }</div>
 						<div class="mt-2">설명 : ${group.description }</div>
 						<button type="button" class="mt-2 group-join-btn" data-group-id="${group.id }">가입하기</button>

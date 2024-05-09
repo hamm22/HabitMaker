@@ -18,23 +18,66 @@
 	
 }
 
-.bi-plus-circle-fill{
-	font-size: 52px;
-	color:orange;
-	float:right;
+#dueDate{
+	font-size: 20px;
+	font-weight: semi-bold;
 }
+
+.bi-chevron-left, .bi-chevron-right{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+
 
 #checkbox{
 	display : none;
 }
 
+/* 습관 입력 칸 */
+.habit-text {
+	margin-left : 10px;
+	width: 240px;
+	border: none;
+	border-bottom: 2px solid #FFB86C;
+	font-size: 17px;
+	outline: none;
+  	box-shadow: none;
+}
+
+.todo-card{
+	margin-left : 15px;
+	width:240px;
+	height:40px;
+	border-radius:12px;
+	background-color: #FFF8DC;
+	padding-top: 7px;
+	padding-left : 15px;
+	text-align: center;
+	font-size: 17px;
+}
+
+
+.bi-three-dots {
+  text-align: right !important;
+}
+
+
+.bi-check-square-fill{
+	color: #ff3333;
+}
+
+
+/* 설명 */
 .btn-box{
 	float: right;
 	margin-left: 120px;
 }
 
-
 .description-box{
+	margin-top: 50px;
+	margin-left:10px;
+	width: 280px;
 	height: auto;
 	outline: none;
 	resize: none;

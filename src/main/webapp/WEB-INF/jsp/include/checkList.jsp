@@ -15,17 +15,17 @@
 <body>
 
 	<div class="right-box">
-		<div class="date d-flex justify-content-center">
-			<i class="bi bi-chevron-left"></i>
+		<div class="date d-flex justify-content-center mt-3 dueDate-box">
+			<i class="bi bi-chevron-left mr-2"></i>
 			<div id="dueDate"> ${param.dueDate }</div>
-			<i class="bi bi-chevron-right"></i>
+			<i class="bi bi-chevron-right ml-2"></i>
 		</div>
 
 		<form id="todoForm">
 			<ul class="todo">
 				<div class="todo-box d-flex ml-2 mt-3">
 					<div class="new-todo-item">
-						<input type="text" placeholder="습관 입력" id="titleInput">
+						<input type="text" placeholder="습관 입력" class="habit-text" id="titleInput">
 					</div>
 				</div>
 			</ul>
@@ -33,38 +33,43 @@
 
 		<div class="todoList mt-3">
 			<c:forEach var="todo" items="${todoList}">
-					<div class="d-flex ml-2 mt-1">
-					<c:choose>
-						<c:when test="${todo.completed}">
-						<i class="bi bi-check-square-fill check-icon" data-checked="true" data-todo-id="${todo.id}"></i>
-						</c:when>
-						<c:otherwise>
-						<i class="bi bi-square check-icon" data-checked="false" data-todo-id="${todo.id}"></i>
-						</c:otherwise>
-					</c:choose>	
-						
+				<div class="d-flex">
+					<div class="d-flex mt-2 todo-card">
+						<c:choose>
+							<c:when test="${todo.completed}">
+								<i class="bi bi-check-square-fill check-icon"
+									data-checked="true" data-todo-id="${todo.id}"></i>
+							</c:when>
+							<c:otherwise>
+								<i class="bi bi-square check-icon" data-checked="false"
+									data-todo-id="${todo.id}"></i>
+							</c:otherwise>
+						</c:choose>
 						<div class="ml-2">${todo.title}</div>
-						<i class="bi bi-three-dots ml-2" id="deleteBtn" data-todo-id="${todo.id}"></i>
+						<i class="bi bi-three-dots ml-2" id="deleteBtn"
+							data-todo-id="${todo.id}"></i>
 					</div>
+				</div>
 			</c:forEach>
 		</div>
 
-<!-- 		설명 -->
+		<!-- 		설명 -->
 		<div class="content-box">
 			<c:set var="count" value="0" scope="page" />
-				<c:forEach var="todo" items="${todoList}">
-					<c:if test="${count eq 0}">
-						<textarea class="form-control mt-3 description-box" rows="7" id="descriptionInput" resize="vertical">${todo.description}</textarea>
-						<c:set var="count" value="1" scope="page"/>
-						<div class="btn-box mt-2">
-							<button type="button" class="btn btn-warning mr-3" id="descriptionBtn">완료</button>
-						</div>
-					</c:if>
-				</c:forEach>
-	</div>
+			<c:forEach var="todo" items="${todoList}">
+				<c:if test="${count eq 0}">
+					<textarea class="form-control description-box" rows="7"
+						id="descriptionInput" resize="vertical">${todo.description}</textarea>
+					<c:set var="count" value="1" scope="page" />
+					<div class="btn-box mt-2">
+						<button type="button" class="btn btn-warning mr-3"
+							id="descriptionBtn">완료</button>
+					</div>
+				</c:if>
+			</c:forEach>
+		</div>
 
-	
-		<i class="bi bi-plus-circle-fill mt-5"></i>
+
 	</div>
 
 
@@ -73,23 +78,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 <script type="text/javascript">
 
-// 	할일 생성
-//  	const plusIcon = document.querySelector('.bi.bi-plus-circle-fill');
-// 	const todoList = document.querySelector('.todo');
 
-// 	plusIcon.addEventListener('click', () => {
-// 	  const newTodoItem = document.createElement('div');
-// 	  newTodoItem.classList.add('todo-box');
-// 	  newTodoItem.innerHTML = `
-// 	    <input type="checkbox">
-// 	    <input type="text" placeholder="습관 입력">
-// 	    <i class="bi bi-three-dots ml-2"></i>
-// 	  `;
-// 	  todoList.appendChild(newTodoItem);
-
-// 	  const newTodoInput = newTodoItem.querySelector('input[type="text"]');
-// 	  newTodoInput.focus(); // 입력 칸에 포커스 설정
-// 	});
 
 	$(document).ready(function() {
 	
