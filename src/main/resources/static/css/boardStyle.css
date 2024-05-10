@@ -14,6 +14,10 @@
 	background-color: #F6F6F6;
 }
 
+#dueDate{
+	font-size: 17px;
+}
+
 /* 그룹 설명 */
 .bi-arrow-left-short{
 	margin-left: 20px;
