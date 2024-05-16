@@ -38,13 +38,11 @@
 	<div class="overlay-container">
 	    <div class="overlay">
 	      <div class="overlay-panel overlay-left">
-	        <h1>Welcome Back!</h1>
-	        <p>광고 문구</p>
 	       <a href="/user/login-view"><button class="ghost">로그인하기</button></a>
 	      </div>
 	      <div class="overlay-panel overlay-right">
 	        <h1>Hello, Friend!</h1>
-	        <p>광고 문구</p>
+				<p></p>
 	        <a href="/user/login-view"><button class="ghost" id="signIn">로그인하기</button></a>
 	      </div>
 	    </div>
