@@ -29,14 +29,14 @@
 		      </div>
 		      <button type="submit" class="mt-3" id="requestBtn">로그인</button>
 <!-- 		     </form> -->
-		      <a href="#">비밀번호를 잊으셨나요?</a>
+<!-- 		      <a href="#">비밀번호를 잊으셨나요?</a> -->
 		    </form>
 		  </div>
 		  <div class="overlay-container">
 		    <div class="overlay">
 		      <div class="overlay-panel overlay-right">
 		        <h1>Hello, Friend!</h1>
-		        <p>광고 문구</p>
+		        <p></p>
 		         <a href="/user/join-view"><button class="ghost">회원가입하기</button></a>
 		      </div>
 		    </div>
