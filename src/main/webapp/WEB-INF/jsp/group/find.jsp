@@ -182,9 +182,7 @@
 				, data:{"groupId":id}
 				, success:function(data) {
 					if(data.result == "success") {
-// 						alert("그룹투두 가입 성공");
 					} else {
-// 						alert("이미 가입한 투두 그룹입니다!");
 					}
 				}
 				, error:function() {

@@ -79,7 +79,6 @@
 <script type="text/javascript">
 
 
-
 	$(document).ready(function() {
 	
 	    // 현재 URL에서 path 확인
@@ -256,15 +255,6 @@
 				}
 			});
 		});
-
-		// 		// 날짜 이동
-		// 		$(".bi-chevron-left").on("click", function(){
-		// 			location.href="/todo/main-view?dueDate=" + dateString
-		// 		});
-
-		// 		$(".bi-chevron-left").on("click", function() {
-		// 			location.href = "/todo/main-view?dueDate=" + dt;
-		// 		});
 
 	});
 </script>

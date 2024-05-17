@@ -137,7 +137,7 @@
 			}
 			
 			if (password.length < 6 || password.length > 20) {
-				  alert("비밀번호는 6자리 이상 20자리 이하로 입력해야 합니다.");
+				  alert("비밀번호는 6자 이상 20자 이하로 입력해야 합니다.");
 				  return;
 			}
 			

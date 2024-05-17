@@ -42,7 +42,7 @@ public class TodoRestController {
 		return resultMap;
 	}
 	
-	// 성공 여부
+	// 완료 여부
 	@PutMapping("/status")
 	public Map<String, String> updateCompleted(@RequestParam("id") int id
 												, @RequestParam("completed") Boolean completed){
